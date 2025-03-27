@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 2}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/24/2025}
+\newcommand {\ADueDate}{03/26/2025}
+\newcommand {\AAcceptDate}{03/31/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Modify existing code to do different things
+\end{itemize}
+
+
+\section*{Part 1: Open SWAT 2}
+\begin{itemize}
+    \item This will be a continuation of the work you did in SWAT 2.  Open the SWAT 2 spreadsheet, and then to go Extensions, then Apps Script.
+\end{itemize}
+
+\section*{Part 2: Error Messages}
+In SWAT 2, we looked at how to show a vote status based on age, an alcohol status based on country and age, and a retire status based on country and age.  In this assignment, we will modify this code to include error messages.  If the age is less than 0, or if the country is not USA, France or Germany, error messages should be displayed.
+\begin{itemize}
+	\item In Apps Script, copy and paste all three functions you wrote.  Rename these new functions to voteStatus2, alcoholStatus2 and retireStatus2.
+\end{itemize}
+
+\section*{Part 3: Change voteStatus}
+In our voteStatus function, add code to account for ages that are less than zero.
+\begin{itemize}
+	\item Change your voteStatus function to account for ages that are less than zero.  Your function should display "Age cannot be less than zero." if an age is less than zero.  All other text should remain the same.
+	\item Be sure to test this function from the spreadsheet and make sure it works!  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_2_voteStatus2}
+  		\caption{voteStatus2, Called From The Spreadsheet, With Error Message}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 4: Change alcoholStatus}
+Similar to the voteStatus above, modify the alcoholStatus function to display an error message if the age is less than zero.  In addition, you function should also display an error message if the country is not the USA, France or Germany.
+\begin{itemize}
+    \item Change your alcoholStatus function to account for ages that are less than zero.  Your function should display "Age cannot be less than zero." if an age is less than zero.  All other text should remain the same.
+    \item Once this is working, modify your alcoholStatus2 function to account for countries that are not the USA, France or Germany.  You will need to set up your current function to check to see if the country is Germany.  You will then need another else to return the text "Country must be the USA, France or Germany."
+	\item Be sure to test this function from the spreadsheet and make sure it works!  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_2_alcoholStatus2}
+  		\caption{alcoholStatus2, Called From The Spreadsheet, With Error Messages}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 5: Change retireStatus}
+Similar to the alcoholStatus above, modify the retireStatus function to display an error message if the age is less than zero.  In addition, you function should also display an error message if the country is not the USA, France or Germany.
+\begin{itemize}
+    \item Change your retireStatus function to account for ages that are less than zero.  Your function should display "Age cannot be less than zero." if an age is less than zero.  All other text should remain the same.
+     \item Once this is working, modify your alcoholStatus2 function to account for countries that are not the USA, France or Germany.  You will need to set up your current function to check to see if the country is the USA.  You will then need another else to return the text "Country must be the USA, France or Germany."
+	\item Be sure to test this function from the spreadsheet and make sure it works!  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_2_retireStatus2}
+  		\caption{retireStatus2, Called From The Spreadsheet, With Error Messages}
+	\end{figure}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A function called voteStatus2 that displays an error message if the age is less than zero.
+    \item A function called alcoholStatus2 that displays an error message if the age is less than zero, or the country is not the USA, France or Germany.
+    \item A function called retireStatus that displays an error message if the age is less than zero, or the country is not the USA, France or Germany.
+\end{itemize}
+\end{document}

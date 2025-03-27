@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 4}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/31/2025}
+\newcommand {\ADueDate}{04/02/2025}
+\newcommand {\AAcceptDate}{04/07/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Utilize ideas from SWAT 4 to create functions to count even and odd numbers.
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file.  Rename this file to HW 4.  Open Apps Script.  Rename the project to HW 4.
+    \item Copy the isEven function from your SWAT 4 assignment into your HW 4 project.
+\end{itemize}
+
+\section*{Part 2: countNums function}
+Here we will reuse ideas from SWAT 4 to create a new function.  This function will count the number of even or odd numbers, from a starting number to an ending number.
+\begin{itemize}
+	\item Create a new function called countNums.  This function should count either the number of even or all of the odd numbers, between 2 numbers.  This function should take three arguments - start, end, and type.  The arguments are as follows:
+	\begin{itemize}
+		\item start - a starting number.
+		\item end - an ending number.
+		\item type - this is odd or even.  The result of the function is either the number of even number, or the number of odd numbers, depending on which is specified.
+	\end{itemize}
+	\item The function should do the following:
+	\begin{itemize}
+		\item If the type is even, the function should return the number of even numbers between start and end.
+		\item If the type is odd, the function should return the number of odd numbers between start and end.
+		\item If the end number is less than the start number, the function should return an error message stating that the end number should be greater than the start number.
+		\item If the type is not even or odd, return an error message stating to use a type of even or odd.
+		\item Use the isEven function from SWAT 4 to check and see if a number is even or odd.
+		\item Use a main function to test the countNums function.
+		\item Use the spreadsheet to call the countNums function.
+	\end{itemize}
+	\item See the screenshot below for an example.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_4_countnums}
+  		\caption{Results from the countNums function}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 3: findFact function}
+Similar to the FACT function in Google Sheets, we can now use a loop to find the factorial of a number.  We will write our own function called findFact to do so.
+\begin{itemize}
+	\item The factorial of a number $n$ is the numbers 1 through n, multiplied together.  Examples are below.
+	\begin{itemize}
+		\item The factorial of 2 is 1 * 2.
+		\item The factorial of 3 is 1 * 2 * 3.
+		\item The factorial of 4 is 1 * 2 * 3 * 4.
+		\item The factorial of 5 is 1 * 2 * 3 * 4 * 5.  
+		\item The factorial of zero and 1 is 1.  
+		\item You cannot find the factorial of negative numbers.
+	\end{itemize}
+	\item Create a new function called findFact.  Send this function a number, n.
+	\item Within your function, you will need the following:
+	\begin{itemize}
+		\item if n $<$ 0, display an error message stating that n must be greater than zero.
+		\item You will need a variable called total, to store the total of the numbers multiplied.
+		\item Use a loop to multiply your numbers.
+		\item Use the main function to test your function in Apps Script.
+		\item Call your function from the spreadsheet.
+	\end{itemize}
+	\item See the screenshot below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_4_factorial}
+  		\caption{Results of the findFact function}
+	\end{figure}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A countNums function that counts even or odd numbers, complete with error messages (50 pts)
+    \item A findFact function that finds the factorial of a number. (50 pts)
+\end{itemize}
+\end{document}

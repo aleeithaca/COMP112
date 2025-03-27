@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 10}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/21/2024}
+\newcommand {\ADueDate}{12/03/2024}
+\newcommand {\AAcceptDate}{12/05/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Utilize 2 loops, one list
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item  Within your COMP-190 folder, create a new Google Sheets file.  Rename this file to HW 10.  Open Apps Script.  Rename the project to HW 10.
+\end{itemize}
+
+\section*{Part 2: 1 List, Two Loops}
+Let's use two loops on one list, to display the list objects in a certain order
+\begin{itemize}
+    \item Create a new function called main.  Send this function no arguments.
+    \item Within main, create a variable called list, with the following objects:  ["a","b","c","d","e"]
+    \item The output of this function should be as follows:
+    \begin{itemize}
+    		\item The first time through, the following should be displayed:  "a", followed by "b","c","d","e"
+    		\item The second time through, the following should be displayed:  "b", followed by "c","d","e"
+    		\item The third time through, the following should be displayed:  "c", followed by "d","e"
+    		\item The fourth time through, the following should be displayed:  "d", followed by "e"
+    	\end{itemize}
+    	\item For this, you will need two loops.  When setting this up, ask yourself, where does the first loop start and end?  Within that first loop, where does the second loop start and end?
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A function called main, that displays elements of a list in a certain order (100 pts)
+\end{itemize}
+\end{document}

@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 13}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/10/2024}
+\newcommand {\ADueDate}{12/12/2024}
+\newcommand {\AAcceptDate}{12/17/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Turn spreadsheet tables into tuples, so that they can be used in Pivot Tables
+\end{itemize}
+
+\section*{Part 1: Copy the file}
+\begin{itemize}
+    \item Open the following file: \url{https://docs.google.com/spreadsheets/d/11lJpwINymI1eQFjHP5NbsIehG1SRpIBi3dQW79VD-Jo/edit?usp=sharing}
+    \item Once opened, copy the file into your COMP 190 folder. 
+    \item Once copied, open Apps Script.
+\end{itemize}
+
+\section*{Part 2: Box Office, Data Structure}
+Let's look at the box office worksheet, then the tuples, then make a pivot table.
+\begin{itemize}
+    \item Within the HW 13 START file, find the Box Office worksheet.  We have used this a lot in COMP 110, and we will use it here, too!
+    \item Note the structure of the data in the Box Office worksheet.  You've got Year in the first column, Season in the first row, and the total gross as numbers in the "middle."  This structure is a table.
+    \item This structure is the defacto structure of data, as it is efficient.  The intersection of column and row is your number.  For example, if you want to know the total gross of the year 2023 and the season of winter, look no further than B2.
+    \item Data in this structure is easily made into charts and is usually how data is structured when downloaded.
+    \item The downside to data in this format is analysis.  If you want to summarize by Year, or by Season, or look at the overall Total Gross, you need functions like SUM, AVERAGE, and COUNT, with ranges and references.  As data grows in size, this becomes more challenging and needs constant updating and maintenance.
+    \item Now find the Box Office Tuples worksheet.  This is the same data as the Box Office sheet, structured as tuples. Tuples data structure is columns as dimensions of data.  Our Box Office data has three dimensions - year, season and total gross.
+    \item Each row in the tuples structure represents the intersection of column and row from our Box Office worksheet.  Our first year is 2023, our first season is winter, and the intersection of 2023 and winter is the same as cell B2 in the Box Office worksheet.
+\end{itemize}
+
+\section*{Part 3: Box Office Pivot Table}
+\begin{itemize}
+    \item It's easy to turn data like the Box Office Tuples worksheet into data like the Box Office worksheet.  If you said Pivot Tables, you are correct!  Highlight the data on the Box Office Tuples worksheet, then insert a pivot table.  Put the pivot table on a new worksheet.
+    \item In your Pivot Table, add Total Gross to Values.  This is the overall amount of money Hollywood has made in the last 20 years, easily summarized - no complicated formulas or syntax.
+    \item In your Pivot Table, add Year to Rows, and uncheck Show Totals.  You will now see how much money Hollywood has made, summarized by year.
+    \item In your Pivot Table, add Season to Columns.  You should now have data that looks exactly the same as our Box Office Worksheet.
+    \item Transforming data using a pivot table is easy.  The real challenge is taking data and turning it into tuples structure.  There's no formula that does that.  We can write one.  Let's do so!
+\end{itemize}
+
+\section*{Part 4: tablesToTuples function}
+We will write a function that takes data in table structure and outputs data in tuples format.
+\begin{itemize}
+	\item Take a look at the Box Office Tuples worksheet.  Ignore the top row(Year, Season, and Total Gross).  You'll have to set this row up manually in the sheet.
+	\item Instead, look to the rest of the rows.  You will find combinations of year, season, and total gross.
+	\item Let's review our main function in Apps Script.  Here you will find the first five rows of the Box Office worksheet. Note that this has the same structure - years in the first column, season in the top row, and total gross in the middle. 
+	\item Note that the first position (range[0][0]) is blank, as we  do not need it.  Keep this in mind when setting up your loop variables.
+	\item range.length is the number of rows.  range[0].length is the number of columns.  The syntax for each position in the range is range[row][column]
+	\item Create a new function called tablesToTuples.  Send this function one argument - range.
+	\item Within your function, you will need the following:
+	\begin{itemize}
+		\item A new blank list
+		\item One loop that starts at 1 and runs the number of rows.
+		\item Within that loop a second loop that starts at 1 and runs the number of columns.
+	\end{itemize}
+	\item Within those loops, do the following:
+	\begin{itemize}
+		\item Into your new blank list, push a row.  This row will consist of three values - the year, the season, and the total gross.
+		\item Think of the coordinates of each piece of the row.  Where is year, and what are the coordinates for it? (as in, which combination of row and column do you need?)  For the season, what are the coordinates?  For the total gross, what are the coordinates?  How do you make that into a row?
+	\end{itemize}
+	\item Outside of the loop, return the new list.
+	\item Test this from your main function and from the spreadsheet, and make sure it works.
+\end{itemize}
+
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A tablesToTuples function (100 pts)
+\end{itemize}
+\end{document}

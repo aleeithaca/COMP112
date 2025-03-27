@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 3}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/26/2025}
+\newcommand {\ADueDate}{03/31/2025}
+\newcommand {\AAcceptDate}{04/02/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Write the minOfFour and maxOfFour functions
+    \item Modify your SWAT 2 functions to be called by one function
+\end{itemize}
+
+
+\section*{Part 1: Open The Files}
+\begin{itemize}
+    \item Open your SWAT 3 file.
+    \item Open your SWAT 2 file.
+\end{itemize}
+
+\section*{Part 2: minOfFour, maxOfFour}
+Like we did in SWAT 3, find the smallest and biggest numbers you can make with 4 individual digits.
+\begin{itemize}
+	\item In your SWAT 3 Apps Script, write a minOfFour function to find the smallest number that can be made from four digits.
+	\item For example, if given the digits 7, 9, 2 and 4, the smallest number that can be created is 2479.
+	\item When setting up this function, keep in mind the number of comparisons that need to be done - you will need six total.
+	\item As usual, test this using main and once working, call from the spreadsheet.
+	\item Once you have minOfFour working, write maxOfFour.  Test and call from the spreadsheet.
+\end{itemize}
+
+\section*{Part 3: actionStatus Function}
+Modify your SWAT 2 file to write an actionStatus function.  This function will take a country, age and action, and display the appropriate text.
+\begin{itemize}
+	\item In your SWAT 2 Apps Script file, write a main function that takes no arguments.  Use main to set up three variables - country, age and action.
+	\item Use the main function to call and test the voteStatus2, alcoholStatus2 and retireStatus2 functions.  These functions are the result of HW 2.  Make sure you test using multiple different countries and ages.
+	\item In your SWAT 2 Apps Script, write a new function called actionStatus. This function should receive three arguments - country, age and action.
+	\item Your actionStatus function should take one of three actions - vote, alcohol, or retire - and call the appropriate function.
+	\item For example, if you wanted to know if someone could vote, you would call actionStatus with the country, age, and an action of "vote."
+	\item When setting up this function, be sure to include an error message if the action is not vote, alcohol or retire. 
+	\item As usual, test and call from the spreadsheet.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.  Be sure to submit both SWAT 3 and SWAT 2!
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item SWAT 2:  An actionStatus function that calls the appropriate function, based on the action specified.
+    \item SWAT 3:  A minOfFour and maxOfFour function.
+\end{itemize}
+\end{document}

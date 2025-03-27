@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 7}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/12/2024}
+\newcommand {\ADueDate}{11/14/2024}
+\newcommand {\AAcceptDate}{11/19/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Write functions similar to COUNTIF, SUMIF and AVERAGEIF
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file.  Rename this to HW 7.  Open Apps Script.  Rename the project to HW 7.
+\end{itemize}
+
+\section*{Part 2: COUNTIF, SUMIF, AVERAGEIF review}
+Let us begin by looking at the spreadsheet functions of COUNTIF, SUMIF and AVERAGEIF and observing how they work.
+\begin{itemize}
+    \item Go to your HW 7 spreadsheet.  In the range A1:J1, type the numbers 1 through 10.
+    \item Recall the COUNTIF function.  The syntax of this function is the following:  COUNTIF(range, criterion).
+    \item The range is where to look.  The criterion is what to look for.  In this case, our range is A1:J1, and we are looking for numbers greater than 5.
+    \item SUMIF and AVERAGEIF have the same arguments - where to look and what to look for.  Since where we are looking and what we are adding/averaging are the same, no additional arguments are necessary.
+    \item Below your numbers, set up the sheet with the following:
+    \begin{itemize}
+    		\item 3 cells labeled COUNTIF, SUMF and AVERAGEIF
+    		\item Next to those cells, the COUNTIF, SUMIF and AVERAGEIF function, all looking for numbers greater than 5.
+    	\end{itemize}
+    	\item Your sheet should look like this:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hw_6_ss_review}
+  		\caption{COUNTIF, SUMIF, AVERAGEIF Review}
+	\end{figure}
+	\item We will have to do things slightly differently when writing our own functions.
+	\item Instead of a range, we will send the function a list. 
+	\item Note the criterion argument - it's got the operator ($<$, $>$, $=$, $>=$, $<=$, $!=$) and the value put together.
+	\item For example, "$>=$5" tells the function to count the numbers greater than or equal to 5.
+	\item Our function will need to send the criterion as a separate argument.  
+	\item For example, our function will look something like this:  function countIfList(list, "$>=$", 5)
+	\item The other constraint on our functions is that our lists will be numbers only - no text!
+\end{itemize}
+
+\section*{Part 3: main function}
+To test our functions, let's set up the main function with our variables.
+\begin{itemize}
+    \item Create a new function called main, with no arguments.
+    \item Within main, create the following three variables:
+    \begin{itemize}
+    		\item var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    		\item var method = "$<$"
+    		\item var value = 5
+    	\end{itemize}
+    	\item Use console.log to show the list.  Run the main function to make sure it works.
+\end{itemize}
+
+\section*{Part 4: countIfList function}
+We will mimic the COUNTIF function by creating our own function, countIfList.
+\begin{itemize}
+    \item Create a new function called countIfList.  This function needs three arguments - list, method and value (you can use l, m and v for brevity's sake, if you so choose).
+    \item You will need the following variables:
+    \begin{itemize}
+    		\item a Loop variable (most likely i), initially set to zero.
+    		\item A variable called count, initially set to zero.
+    	\end{itemize}
+    	\item You will need a loop.  The loop should start at zero and go the entire length of the list.
+    	\item Within the loop, do the following:
+    	\begin{itemize}
+    		\item Check to see if method (or m) is equal to the text "="
+    		\item If this is true, check to see if value is equal to the current list position.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT USE ELSE - check to see if method is equal to the text "!="
+    		\item If this is true, check to see if value is equal to the current list position.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT USE ELSE - check to see if method is equal to the text "$<$"
+    		\item If this is true, check to see if current list position is less than value.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT USE ELSE - check to see if method is equal to the text "$<=$"
+    		\item If this is true, check to see if current list position is less than or equal to value.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT USE ELSE - check to see if method is equal to the text "$>$"
+    		\item If this is true, check to see if current list position is greater than value.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT USE ELSE - check to see if method is equal to the text "$>=$"
+    		\item If this is true, check to see if current list position is greater than or equal to value.
+    		\item If this is true, increment count by 1.
+    		\item DO NOT WORRY ABOUT ERROR MESSAGES OR ELSE.
+    		\item Don't forget to increment your loop variable by 1!
+    	\end{itemize}
+    	\item Outside of the loop, return count.
+    	\item Test this to make sure it works!  Call the function from main.  It will not work from the sheet at the moment.
+\end{itemize}
+
+\section*{Part 4: sumIfList function}
+Similar to the countIfList function, we will utilize the same ideas to sum the numbers in a list.
+\begin{itemize}
+    \item Copy your countIfList function.  Rename this function to sumIfList.
+    \item In your function, change your count variable to sum.
+    \item Instead of incrementing count by 1, add the current list position to sum.
+    \item Return sum instead of count.
+    \item Use the main function to test it.
+\end{itemize}
+
+\section*{Part 5:avgIfList function}
+This function will utilize the countIfList and sumIfList functions to return an average.
+\begin{itemize}
+    \item Create a new function called avgIfList.  Send this function three arguments - list, method, and value.
+    \item This function needs to do one thing:  return sumifList divided by countIfList.
+    \item Use the main function to test it.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A countIfList function (45 pts)
+    \item a sumIfList function (45 pts)
+    \item An avgIfList function (10 pts)
+\end{itemize}
+\end{document}

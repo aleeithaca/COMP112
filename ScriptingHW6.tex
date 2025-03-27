@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 6}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/07/2024}
+\newcommand {\ADueDate}{11/12/2024}
+\newcommand {\AAcceptDate}{11/14/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Modify existing functions to use lists instead of individual variables
+\end{itemize}
+
+
+\section*{Part 1: Get the file}
+\begin{itemize}
+    \item Open the start file:  \url{https://docs.google.com/spreadsheets/d/1CaVbd0uFHHNraiPmc7kOH9TCbseQVCgbHF8HTPZFDhI/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Place this copy into your COMP-190 folder.
+    \item Once moved, open the file and Apps Script.  Within, you should see four functions - main, minOfFour, maxOfFour and magic.
+\end{itemize}
+
+\section*{Part 2: main function}
+Let's review our variables and our list.  We will then move into modifying functions.
+\begin{itemize}
+	\item Go to the main function.  Here, you will find four variables - a, b, c and d.  Each one is assigned a number.
+	\item There is a fifth variable called list, and the list contains four objects - a, b, c and d.
+	\item Let's review each individual position in the list, and the associated variable.
+	\begin{itemize}
+		\item a - list[0]
+		\item b - list[1]
+		\item c - list[2]
+		\item d - list[3]
+	\end{itemize}
+\end{itemize}
+
+\section*{Part 3: minOfFourList function}
+Let's modify your minOfFour function to use a list of four values, as opposed to using four variables
+\begin{itemize}
+    \item Copy the minOfFour function.  Paste it, and rename the function to minOfFourList.
+    \item Change the function arguments.  Instead of a, b, c and d, use just one - list.
+    \item Modify your if statements.  Replace every a, b c and d variable with the associated list position.  See part 2 for inspiration!
+    \item You will also need to modify your return statement.
+    \item Once you have this completed, test this function using your main function.  You should get the same results as your minOfFour function.
+\end{itemize}
+
+\section*{Part 4: maxOfFourList function}
+Let's now create our maxOfFourList function.
+\begin{itemize}
+    \item Copy the minOfFourList function.  Paste it.  Rename it to maxOfFourList.  Modify the arguments to use only one - list.
+    \item You need to modify one thing in this function - the return statement.
+    \item Once you have this completed, test this function using your main function.  You should get the same results as your maxOfFour function.
+\end{itemize}
+
+\section*{Part 4: magicList function}
+Let's modify our magic function from SWAT 5 to use lists.
+\begin{itemize}
+    \item Copy the magic function.  Paste it.  Rename it to magicList.  Modify the arguments to use only one - list.
+    \item Make the necessary changes to make this function work with a list, rather than 4 variables.
+    \item Test it, and make sure it works.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A minOfFourList function (30 pts)
+    \item A maxOfFour function (30 pts)
+    \item A magicList function (40 pts)
+\end{itemize}
+\end{document}

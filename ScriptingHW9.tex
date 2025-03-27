@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 9}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/19/2024}
+\newcommand {\ADueDate}{11/21/2024}
+\newcommand {\AAcceptDate}{12/03/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Write a version of the UNIQUE function
+\end{itemize}
+
+
+\section*{Part 1: Open the file}
+\begin{itemize}
+    \item As this assignment will need the inList function, you can add the work for today's assignment to your SWAT 9 file.
+\end{itemize}
+
+\section*{Part 2: UNIQUE function}
+Let's review the UNIQUE function
+\begin{itemize}
+    \item In your SWAT 9 Google Sheets file, in the first column, write 10 - 20 letters (one letter per cell).  Make sure some of those letters repeat.
+    \item In a different column, use the UNIQUE function to find the unique entries of the letters you just typed.  Your resulting list should be shorter than your original list, and there should be no repeat values.
+    \item You will want to recreate this function using a list in Apps Script.
+\end{itemize}
+
+\section*{Part 3: main function}
+Let's move to Apps Script, set up a main function, and make sure it works.
+\begin{itemize}
+    \item Go to Apps Script.  Create a new function called main.  Send this function no arguments.
+    \item Within main, set up a new variable called list, and within the list, assign the values you used in Part 2.  Something like this:  var list = ["a","b","c","c","a","f","k","o","b","k"]
+    \item Within main, use console.log to display this list.  Save and run the function, and you should see the list you just created.
+\end{itemize}
+
+\section*{Part 4: uniqueList function}
+Now let's write the uniqueList function, which will find the unique entries.
+\begin{itemize}
+    \item Create a new function called uniqueList.  Send this function one argument - list.
+    \item Let's review out ultimate goal:  We need a new list, that is just the unique elements in a list.
+    \item To accomplish this, we will need the following:
+    \begin{itemize}
+    		\item a new list, initially set to the first position of the original list.  We can do this because when creating a unique list, the first position of any list is guaranteed to be in the unique list.
+    		\item A loop to loop through our original list.  Use the inList function to see if each position in the sent list is in the new unique list.
+    		\item If the sent list position is not in the unique list, add it to the unique list.  
+    		\item Outside of the loop, return the unique list.
+    	\end{itemize}
+    	\item Use the main function to call and test this function.
+    	\item No more hints.  Give this a try!
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item a uniqueList function (100 pts)
+\end{itemize}
+\end{document}

@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 1}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/19/2025}
+\newcommand {\ADueDate}{03/24/2025}
+\newcommand {\AAcceptDate}{03/26/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!}  This will be a continuation of the work done in Scripting SWAT 1.  Reference that assignment for concepts and details.
+
+
+\section*{Part 1: Get the file}
+\begin{itemize}
+    \item Similar to SWAT 1, I have a start file needed to begin.  You can find the file here:
+    \item \url{https://docs.google.com/spreadsheets/d/1of3siioM6kUUrqre3o3w54xnEihwoCLpohw5vbSk9d4/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Place a copy of this file into your COMP 190 folder, created during the SWAT 1 class.
+    \item Once you have your own copy of this file, click Extensions, then Apps Script.
+\end{itemize}
+
+\section*{Part 2: ageStatus}
+Let's find out who can vote or drink, possibly both, or possibly neither.  It depends on age.  Based on a person's age, we will write a function to display what that person can do.
+\begin{itemize}
+	\item In Apps Script, create a new function called ageStatus.  This function should receive one argument - age.  Add a comment as to the function's purpose.
+	\item Within the ageStatus function, use if statements to display the person's status, based on age.  Your function should return one of three things:
+	\begin{itemize}
+		\item If the age is less than 18, display "You cannot vote nor drink."
+		\item If the age is greater than or equal to 18 and less than 21, display "You can vote but not drink"
+		\item If the age is greater than or equal to 21, display "You can vote and drink"
+	\end{itemize}
+	\item Since there are three outcomes, you will need two if statements.
+	\item Once you have your function written, you will want to use the age worksheet to call the ageStatus function.  Send the function one argument, the person's age.  The cell should then display the appropriate message.  See below.
+	\begin{figure}[H]
+  \centering
+  \includegraphics{scripting_hw_1_agestatus}
+  \caption{ageStatus, Function Call and Result}
+\end{figure}
+\end{itemize}
+
+\section*{Part 3: studentStanding}
+Let's find out the standing of students (senior, junior, sophomore or first year) based on the number of credits each student has.
+\begin{itemize}
+	\item In Apps Script, create a new function called studentStanding.  This function should receive one argument - credits.  Add a comment as to the function's purpose.
+	\item Within the studentStanding function, use if statements to display the standing, based on credits. Your function should return one of four things:
+	\begin{itemize}
+		\item If the credits are greater than or equal to 90, display "Senior"
+		\item If the credits are less than 90 and  greater than or equal to 60, display "Junior"
+		\item If the credits are less than 60 and greater than or equal to 30, display "Sophomore"
+		\item If the credits are less than 30, display "First Year"
+	\end{itemize}
+	\item Once you have your function written, you will want to use the standing worksheet to call the studentStanding function.  Send the function one argument, the student's credits.  The cell should then display the appropriate message.  See below.
+	\begin{figure}[H]
+  \centering
+  \includegraphics{scripting_hw_1_studentstanding}
+  \caption{studentStatus, Results}
+\end{figure}
+\end{itemize}
+
+\section*{Part 4: stormStatus}
+Let's display the category of hurricane, based on the wind speed.
+\begin{itemize}
+	\item In Apps Script, create a new function called stormStatus.  This function should receive one argument - windspeed.  Add a comment as to the function's purpose.
+	\item Within the stormStatus function, use if statements to display the hurricane's category, based on windpseed.  Your function should return one of six things:
+	\begin{itemize}
+		\item If the windspeed is greater than or equal to 157, display "5"
+		\item If the windspeed is less than 157 and greater than or equal to 130, display "4"
+		\item If the windspeed is less than 130 and greater than or equal to 190, display "3"
+		\item If the windspeed is less than 111 and greater than or equal to 96, display "2"
+		\item If the windspeed is less than 96 and greater than or equal to 74, display "1"
+		\item If the windspeed is less than 74, display "0"
+	\end{itemize}
+	\item Once you have your function written, you will want to use the age worksheet to call the stormStatus function.  Send the function one argument, the hurricane's windpseed.  The cell should then display the appropriate message.  See below.
+	\begin{figure}[H]
+  \centering
+  \includegraphics{scripting_hw_1_stormstatus}
+  \caption{stormStatus, Results}
+\end{figure}
+\end{itemize} 
+
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A function called ageStatus that displays vote, vote and drink, or cannot vote or drink based on age.
+    \item A function called studentStanding that displays Senior, Junior, Sophomore, or First Year based on credits.
+    \item A function called stormStatus that displays 0, 1, 2, 3, 4, or 5 based on windspeed.
+\end{itemize}
+\end{document}

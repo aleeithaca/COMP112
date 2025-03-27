@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 11}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/03/2024}
+\newcommand {\ADueDate}{12/05/2024}
+\newcommand {\AAcceptDate}{12/10/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Write a custom sort for days of the week
+\end{itemize}
+
+
+\section*{Part 1: Open the file}
+\begin{itemize}
+    \item As this homework needs the sortList function, write the following functions in your SWAT 11 Apps Script project.
+\end{itemize}
+
+\section*{Part 2: findPosition function}
+We will first need a function that returns a value's position in the list, and -1 if it is not in the list
+\begin{itemize}
+    \item Create a new function called findPosition.  Send this function two arguments - a value and a list.
+    \item You will need a loop, to loop through the list, and see if value is in the list.  If it is, send back the position of the value in the list.  If the value is not in the list, return -1.
+    \item For example, you have the following list: var list = ["a","b","c"].  The result of findPosition("a", list) should be 0.  The result of findPosition("b", list) should be 1. The result of findPosition("c", list) should be 2.
+    \item If the value is not in the list, you should get a result of -1.  findPosition("z",list) should return -1.
+    \item Use your main function to create variables and test the function.  
+\end{itemize}
+
+\section*{Part 3: Custom Sorting:  Days of the Week}
+Most sorting does alphabetical order, which doesn't work for days of the week. Let's write our own custom sorting function to sort the days of the week.
+\begin{itemize}
+    \item Create a new function called daySort.  Send this function one argument - a list.
+    \item Create a new variable called days, which is a list of the days, in order from Sunday through Saturday.  It should look like this:
+    \item var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    \item Your function will need to create a new list of numbers.  Those numbers should be the position of your sent list values, as found in the days variable.
+    \item For example, var list = ["Monday","Friday","Wednesday"], your new list should be [1, 6, 3].
+    \item You will need to loop through the sent list and use the findPosition function to do so.
+    \item Once the new list is created, sort it with the sortList function.
+    \item Here you will need to build a second new list.  This list should be numbers of the newly sorted list, translated back to the proper days of the week.
+    \item For example, our sorted list from above is [1, 3, 6].  Translated back to the day, your new list should look like this: ["Monday","Wednesday","Friday"]
+    \item Return the translated list.
+\end{itemize}
+
+\section*{Part 4: monthSort fuction}
+\begin{itemize}
+    \item As part 3, except months instead of days.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A findPosition function (33 pts)
+    \item A daySort function (34 pts)
+    \item A monthSort function (33 pts)
+\end{itemize}
+\end{document}

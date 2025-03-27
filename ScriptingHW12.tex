@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 12}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/05/2024}
+\newcommand {\ADueDate}{12/10/2024}
+\newcommand {\AAcceptDate}{12/12/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Use ranges to find set union, set interset and set difference.
+\end{itemize}
+
+
+\section*{Part 1: Copy the file}
+\begin{itemize}
+    \item Open the HW 12 Start file here: \url{https://docs.google.com/spreadsheets/d/1s0ZLNDLOUKBTKEGZbMs_MPXRi7mp5BAxWi7I_57hsb4/edit?usp=sharing}
+    \item Once opened, copy the file to your COMP 190 folder.
+    \item Once copied, open Apps Script.
+    \item Open the SWAT 9 assignment.  We will be referencing these functions in this assignment.
+\end{itemize}
+
+\section*{Part 2: SWAT 9 Review}
+Let's hearken back to SWAT 9, where we first looked at sets, and wrote a few functions to work with them.
+\begin{itemize}
+    \item To review, go to the following website:  \url{https://www.probabilitycourse.com/chapter1/1_2_2_set_operations.php}
+    \item We had the following three set theories:
+    \begin{itemize}
+    		\item Set union - everything from both sets, no repeats
+    		\item Set intersect - everything common to both sets (as in, object is in both sets)
+    		\item Set difference - set a - set b is all things that are in a and not in b.  set b - set a is all things are in b but not in a.
+    	\end{itemize}
+    	\item When we finished these functions in SWAT 9, we tried to run them from the sheet.  It did not work!  We didn't know how to work with ranges yet.  Now that we do, we should be able to use these functions from the spreadsheet - our ultimate goal.
+    	\item In order to do this, we will need to modify our set theory function to work with ranges instead of lists.  We will also need a function to find a value in a range.
+    	\item Go to your sheet.  Here you will find two ranges of data, each representing a set.  Using Apps Script, you will use ranges so that the functions can be used in Apps Script and from the sheet.
+\end{itemize}
+
+\section*{Part 3: inRange function}
+Let's create our inRange function, to see if a value is in a range.
+\begin{itemize}
+    \item In Apps Script, you will find two functions - our rangeToRow function from SWAT 12, and the inList function from SWAT 9.  
+    \item Create a new function called inRange.  Send this function two arguments - value and range.
+    \item Within the function, make the following changes:
+    \begin{itemize}
+    		\item Set up two loops, complete with loop variables and proper incrementing of those variables.  These loops should loop through the rows and columns of the range.
+    		\item Within your second loop, check to see if the value is the same as the current position in the range.  If so, return true.
+    		\item Outside of your loops, return false.
+    	\end{itemize}
+    	\item Use the main function to test this function - the ranges you will need are already set up.
+\end{itemize}
+
+\section*{Part 4: setUnion Function}
+Let's write our setUnion function again, only this time, make it work with ranges!
+\begin{itemize}
+    \item Create a new function called setUnion.  Send this function two arguments - rangea and rangeb.
+    \item Recall that set union is everything from both sets, no repeats.  In our example, the union of our example is [ [ a,	d,	k,	m,	r,	s,	p,	z,	c,	e,	l,	t,	o,	x,	b] ]
+    \item Within the function, do the following:
+    \begin{itemize}
+    		\item A newrange variable, that is rangea, turned into a row.
+    		\item Two loops, complete with loop variables and proper incrementing of those variables.  These loops should loop through the rows and columns of rangeb.
+    		\item Within the second loop, check to see if the current position of rangeb is in rangea.  If it is not, push the value into the first row of the newrange variable.
+    		\item Outside of the loops, return the newrange.
+    	\end{itemize}
+    	\item Test this to make sure it works.  This should work from both Apps Script and the sheet.
+\end{itemize}
+
+\section*{Part 5: setIntersect function}
+Let's write our setIntersect function again, only this time, make it work with ranges!
+\begin{itemize}
+    \item Create a new function called setIntersect.  Send this function two arguments - rangea and rangeb.
+    \item Recall that set intersect is everything that is present in both sets. In our example, the set intersect is [ [ "m","a","p" ] ]
+    \item Within the function, do the following:
+    \begin{itemize}
+    		\item A newrange variable, that is a new blank range.  Note that a blank range is a blank row, within a larger list.
+    		\item Two loops, complete with loop variables and proper incrementing of those variables.  These loops should loop through the rows and columns of rangeb.
+    		\item Within the second loop, check to see if the current position of rangeb is in rangea.  If it is, push the value into the first row of the newrange variable.
+    		\item Outside of the loops, return the newrange.
+    	\end{itemize}
+    	\item Test this to make sure it works.  This should work from both Apps Script and the sheet.
+\end{itemize}
+
+\section*{Part 6: setDifference function}
+Let's write our setDifference function again, only this time, make it work with ranges!
+\begin{itemize}
+    \item Create a new function called setDifference.  Send this function two arguments - rangea and rangeb.
+    \item Recall that set difference is everything that is present in one set, but not the other.  For example, rangea - rangeb is [ [ d,	k,	r,	s,	z,	c,	e ] ].  rangeb - rangea is [ [ l, t,	o,	x,	b ] ]
+    \item Within the function, do the following:
+    \begin{itemize}
+    		\item A newrange variable, that is a new blank range.  Note that a blank range is a blank row, within a larger list.
+    		\item Two loops, complete with loop variables and proper incrementing of those variables.  These loops should loop through the rows and columns of rangea.
+    		\item Within the second loop, check to see if the current position of rangea is in rangeb.  If it is not, push the value into the first row of the newrange variable.
+    		\item Outside of the loops, return the newrange.
+    	\end{itemize}
+    	\item Test this to make sure it works.  This should work from both Apps Script and the sheet.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item An inRange function (25 pts)
+    \item A SetUnion function (25 pts)
+    \item A setIntersect function (25 pts)
+    \item A setDifference function (25 pts)
+\end{itemize}
+\end{document}

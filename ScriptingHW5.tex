@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 5}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{04/02/2025}
+\newcommand {\ADueDate}{04/07/2025}
+\newcommand {\AAcceptDate}{04/09/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Use a loop to "prove" the collatz conjecture
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a few Google Sheets file.  Rename this file to HW 5.  Open Apps Script.  Rename the project to HW 5.
+\end{itemize}
+
+\section*{Part 2: Collatz Conjecture Overview}
+Similar to Kaprekar's Magic, the collatz conjecture is a mathematical idea that can be "proven" with loops.  More information here:  \url{https://en.wikipedia.org/wiki/Collatz_conjecture}
+\begin{itemize}
+    \item The premise of the collatz conjecture is simple:  Take any integer (no decimals!) greater than 1.  Find out if it is even.  If it is, multiply it by 2.  If it is not even, multiply the number by 3 and add 1.
+    \item Take the resulting integer, and see if it is even.  If it is, divide by 2.  If it is not even, multiply it by 3 and add 1.
+    \item Do this enough times, and eventually, the result will be 1 - NO MATTER WHAT NUMBER YOU START WITH.
+\end{itemize}
+
+\section*{Part 3: collatz function}
+Let's write a function that will find out how many times a loop runs until the result is 1.
+\begin{itemize}
+    \item In Apps Script, write a new function called collatz.  Send this function a number, $n$
+    \item You will need a loop but not a loop variable.  As we are finding out how many times the loop runs, set up a variable called count, initially set to 0.
+    \item When setting up your loop, we want the loop to run while $n$ is not equal to 1.
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Check to see if $n$ is even.  If it is, reassign $n$ to be $n$ / 2.
+    		\item If $n$ is not even, reassign $n$ to be $n$ * 3 + 1.
+    		\item Increment your count by 1.
+    	\end{itemize}
+    	\item Outside of your loop, return count.
+    	\item Test it!  You should get results similar to the following:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_collatz}
+  		\caption{collatz interations}
+	\end{figure}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item a collatz function (100 pts)
+\end{itemize}
+\end{document}

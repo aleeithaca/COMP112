@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting HW 6}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/14/2024}
+\newcommand {\ADueDate}{11/19/2024}
+\newcommand {\AAcceptDate}{11/21/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Write functions similar to COUNTIF, SUMIF and AVERAGEIF
+\end{itemize}
+
+
+\section*{Part 1: Open the file}
+\begin{itemize}
+    \item Open your SWAT 8 Google Sheets file.  You will add one new function to your existing code.
+\end{itemize}
+
+\section*{Part 2: isPalV2 function}
+The isPal function we wrote in SWAT 8 uses two loops.  Can we write it with only one?
+\begin{itemize}
+    \item Create a new function called isPalV2.  Send this function one argument - word.
+    \item Our original isPal function uses two loops - one in reverseList, and one in the isPal function.  Can we do it with one?
+    \item Here's some hints on how to accomplish this:
+    \begin{itemize}
+    		\item You will need one loop, with a loop variable that starts at zero.
+    		\item You may also wish to set up a second variable called end, initially set to the last position in the list.
+    		\item Within your loop, you will need to compare two things.  To begin, you'll need to compare the first position in the list to the last position in the list.  How do you do that?
+    		\item As you progress, where should the loop stop?
+    	\end{itemize}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item An isPalV2 function
+\end{itemize}
+\end{document}
