@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 7}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/12/2024}
+\newcommand {\ADueDate}{11/14/2024}
+\newcommand {\AAcceptDate}{11/19/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Utilize lists to analyze words, aka strings of characters
+	\item Write unique and interesting functions that don't exist in the spreadsheet.
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file.  Rename this file to SWAT 7.  Open Apps Script.  Rename the project to SWAT 7.
+\end{itemize}
+
+\section*{Part 2: Words as Lists}
+Computers don't see words; computers see "strings" of characters.  These "strings" are also seen as lists of individual characters.
+\begin{itemize}
+    \item Create a new function called main, no arguments.  
+    \item Within main, create a new variable called word.  Assign this variable the text "banana"
+    \item Use console.log to show word[0].  What character is shown?
+    \item What would you do to show the first "n"?
+    \item Two ways of showing word:  var word = "banana" or var word = ["b","a","n","a","n","a"]
+\end{itemize}
+
+\section*{Part 3: Vowels}
+How many vowels are in banana?
+\begin{itemize}
+    \item Let's review vowels before we start writing code.  Vowels are a, e, i, o and u.
+    \item y is sometimes a vowel.  If there are no other vowels present, y is a vowel.  If any of the other vowels are present, y is not a vowel.
+    \item For example, the y in Monday is not a vowel - there's an o and a there.  In the word myth, y is a vowel, as there are no other vowels.
+    \item How do we count vowels in Sheets?  A quick search reveals this:  \url{https://www.excelforum.com/excel-general/592300-counting-vowels.html}
+    \item Take a look at the formulas in that page.  Complex, not intuitive, and the sheet syntax makes things difficult.  It also does not account for the "sometimes y" portion of vowels!
+    \item Keep this in mind when writing our next function.  With a few lines of code, we can easily write a function to count vowels, and account for y!
+\end{itemize}
+
+\section*{Part 4: vowelCount function}
+Let's write a function that counts the vowels in a word!
+\begin{itemize}
+    \item Create a new function called vowelCount.  Send this function one argument - word.
+    \item Our function will need the following:
+    \begin{itemize}
+    		\item A loop variable that starts at zero.
+    		\item A count variable that starts at zero.
+    		\item A loop that starts at zero and runs the length of the word
+    	\end{itemize}
+    	\item Within your loop, to the following:
+    	\begin{itemize}
+    		\item See if the current list position is the same as "a".  If it is, increment count.
+    		\item See if the current list position is the same as "e".  If it is, increment count.
+    		\item See if the current list position is the same as "i".  If it is, increment count.
+    		\item See if the current list position is the same as "o".  If it is, increment count.
+    		\item See if the current list position is the same as "u".  If it is, increment count.
+    	\end{itemize}
+    	\item Once the loop is finished, do the following:
+    	\begin{itemize}
+    		\item See if the count is zero.  If it is, run the loop again, this time, counting the y character.
+    		\item Return the count.
+    	\end{itemize}
+    	\item Use a main function and the spreadsheet to find out of this works.
+\end{itemize}
+
+\section*{Part 5: vowelCount2 function}
+The function above takes 2 loops.  How do we do it in one?
+\begin{itemize}
+    \item Copy the vowelCount function.  Paste it.  Rename the function to vowelCount2.
+    \item What changes need to be made to run a loop only once?
+    \item Here's a hint:  2 counting variables.
+    \item Use the main function and spreadsheet to make sure this works.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A vowelCount function (50 pts)
+    \item A vowelCount2 function (50 pts)
+\end{itemize}
+\end{document}

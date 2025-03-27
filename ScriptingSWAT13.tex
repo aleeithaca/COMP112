@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 13}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/10/2024}
+\newcommand {\ADueDate}{12/12/2024}
+\newcommand {\AAcceptDate}{12/17/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Turn rows into columns, columns into rows, transposition of ranges
+\end{itemize}
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+	\item In your COMP-190 folder, create a new Google Sheets file.  Rename this file to SWAT 13.  Open Apps Script.  Rename the project to SWAT 13.
+\end{itemize}
+
+\section*{Part 2: TRANSPOSE function}
+We know how to traverse a range with loops, doing things like displaying, or adding, or pushing those objects.  Now we will turn rows into columns, columns into rows, and transpose our data.
+\begin{itemize}
+	\item Let's look at the transpose function, what it does, and then apply those same concepts to Apps Script.
+    \item In your sheet, add 15 or so random letters to the range A1:C5, creating a range that has 5 rows and 3 columns.
+    \item In your sheet, somewhere else, write the following function:  =TRANSPOSE(A1:C1).
+    \item When you press Enter, what happens?  It takes the row of characters you chose (A1:C1) and turned it into a column.
+    \item In your sheet, somewhere else, write the following function:  =TRANSPOSE(A1:A5).
+    \item When you press Enter, what happens?  It took that column of information (A1:A5) and turned it into a row.
+    \item In your sheet, somewhere else, write the following function:  =TRANSPOSE(A1:C5).
+    \item When you press Enter, what happens?  The rows are now columns, and the columns are now rows.
+    \item Let's tackle each of these things individually, and write three functions that do these transpositions.
+\end{itemize}
+
+\section*{Part 3: main function}
+Let's create our main function in Apps Script, and set up our range as it is on the sheet.
+\begin{itemize}
+    \item In Apps Script, create a new function called main.  Send this function no arguments.
+    \item In main, set up your range.  Remember that this is a list, of lists.  Your range should look similar to the following example:
+    \item var range = [ [ "a","b","c" ], [ "d","e","f ] ]  Note that this is only two rows, your example should have five.
+    \item Once set up, use console.log to display the range.  Run main, and make sure it works!
+\end{itemize}
+
+\section*{Part 3: rowToColumn function}
+Let's first tackle the first problem, turning a single row into a single column.
+\begin{itemize}
+    \item In Apps Script, create a new function called rowToColumn.  Send this function one argument - range.
+    \item Let's review what a single row in a range looks like, as we will be using these functions from the spreadsheet.
+    \item A single row is a list of lists, with only one list within.  It looks like this:  [ [ "a","b","c" ] ]
+    \item A single column in a range looks like this:  [ ["a"], ["b"], ["c"] ]
+    \item Here's what we need to do:  go through the row, and push each object in the row, as a row, into a list.
+    \item For example, "a" becomes ["a"], "b" becomes ["b"], and "c" becomes ["c"].  How do we do this?
+    \item First, we need a new blank list.  var newlist = [ ]
+    \item If you said loop, you are correct!  Set up a loop variable, initially set to zero.
+    \item Create a while loop that starts at zero and runs through the length of our first row (aka the number of columns).  It should look like this:
+    \begin{itemize}
+    		\item while(i < range[0].length)
+    	\end{itemize}
+    	\item Within the loop, do the following:
+    	\begin{itemize}
+    		\item into your newlist, push a row.  The contents of the row should be range[0][i].  Note that if your loop variable is not i, be sure to use your loop variable.
+    		\item It should look like this:  newlist.push([range[0][i]])
+    		\item Increment your loop variable!
+    	\end{itemize}
+    	\item Outside of the loop, return your newlist.  
+    	\item Call this function from main.  To send one row from your range, you will have to send the row, enclosed in brackets.
+    	\item For example, to send the first row, use [range[0]] as your argument.  It would look something like this:
+    	\item console.log(rowToColumn([range[0]])
+    	\item Also, test this from the spreadsheet.  Your rowToColumn function, when given the range A1:C1, should return the same output as your first TRANSPOSE function from part 2.
+\end{itemize}
+
+\section*{Part 4: selectColumn function}
+Getting a single row out of a range is fairly simple.  Getting a single column is a bit trickier.  Let's try!
+\begin{itemize}
+    \item Create a new function called selectColumn.  Send this function two arguments - range and colnum.
+    \item colnum is a number, and is which column you wish to see.  Note that columns, just like rows, start at 0. So, if you wish to see the first column, you'll need position zero.
+    \item Like rowToColumn, you'll need a new blank list and a loop variable, initially set to zero.
+    \item As you may have guessed, you will need a loop.  This loop will need to start at zero, and run through the number of rows (recall that this is range.length)
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Into your newlist, push a new row.  This row should contain the range[loop variable][colnum].
+    		\item Something like this:  newlist.push([range[i][colnum]])
+    		\item Increment your loop variable!
+    	\end{itemize}
+    	\item Outside of the loop, return the newlist.
+    	\item Test this from both the main function and the sheet, to make sure it works.
+\end{itemize}
+
+\section*{Part 5: columnToRow function}
+Now that we can select and create a single column, let's turn that column into a row.
+\begin{itemize}
+    \item Create a new function called columnToRow.  Send this function one argument - range.
+    \item We will need to loop through the number of rows, and push the first position of each row into a new list.
+    \item You will need a new blank list and a loop variable, initially set to zero.
+    \item You will need a loop that starts at zero and runs through the number of rows.
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Into your new list, push a row.  This row should contain the contents of range[loop variable][0].
+    		\item Increment your loop variable.
+    	\end{itemize}
+    	\item Outside of the loop, return your new list.  Be sure to return your new list as a range (for example, return [newlist]
+    	\item Test this function from both main and the spreadsheet.
+\end{itemize}
+
+\section*{Part 6: transposeRange function}
+Now let's use our newly created functions to write the transpose function, in Apps Script!
+\begin{itemize}
+    \item Create a new function called transposeRange.  Send this function one argument - range.
+    \item In this function, we will need to do the following:
+    \begin{itemize}
+    		\item Select each individual column
+    		\item Turn that column into a row
+    		\item Push that row into a new list
+    		\item Return that new list.
+    	\end{itemize}
+    	\item You'll need the following things:
+    	\begin{itemize}
+    		\item a new blank list.
+    		\item A loop variable
+    		\item A loop that starts at zero and runs the number of columns.
+    	\end{itemize}
+    	\item Within the loop, do the following:
+    	\begin{itemize}
+    		\item Use selectColumn to select each individual column.
+    		\item Use columnToRow to turn that column into a row
+    		\item Push the row into the new list.  Note, when doing this, recall that the columnToRow function will return a range, so when pushing the row into the new list, push the first row of the result of columnToRow. 
+    	\end{itemize}
+    	\item Outside the function, return the newlist.
+    	\item Test this function from main and the spreadsheet.  It should work exactly as the TRANSPOSE function did!
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A rowToColumn function (25 pts)
+    \item A selectColumn function (25 pts)
+    \item A columnToRow function (25 pts)
+    \item A transposeRange function (25 pts)
+\end{itemize}
+\end{document}

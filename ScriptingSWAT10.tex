@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 10}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/21/2024}
+\newcommand {\ADueDate}{12/03/2024}
+\newcommand {\AAcceptDate}{12/05/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand and utilize two loops at once
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file. Rename the file to SWAT 10.  Open Apps Script.  Rename the project to SWAT 10.
+\end{itemize}
+
+\section*{Part 2: Loops Review}
+Let's set review the parts needed in a loop, and what else we would need for two loops.
+\begin{itemize}
+    \item When using loop, you will need the following:
+    \begin{itemize}
+    		\item A loop variable, set to an initial value (usually 0)
+    		\item A while statement, with a condition to end the loop
+    		\item Incrementing the loop variable (i = i + 1)
+    	\end{itemize}
+    	\item Given the above, if you have two loops, you'll need 2 loop variables, 2 while statements, and 2 loop variable increments. 
+    	\item Keep in mind that one loop is within the other. You will need to reset the second loop within the first loop, and be sure to set up your increments correctly.
+\end{itemize}
+
+\section*{Part 3: 1 through 5, twice}
+Our goal here is to display the following:  1, followed by 1, 2, 3, 4, 5.  Then, 2, followed by 1, 2, 3, 4, 5.  Then, 3, followed by 1, 2, 3, 4, 5.  Then 4, followed by 1, 2, 3, 4, 5.  Last, display 5, followed by 1, 2, 3, 4, 5.
+\begin{itemize}
+    \item Create a new function called twoLoops.  Send this function no arguments.
+ 	\item Note the pattern above.  We will need one loop that goes from 1 to 5.  Within, we will need one loop that goes from one to five.
+ 	\item Start small, and make sure it works.  Set up one loop, that goes from 1 to 5, and displays the value.  Your code should look like this:
+ 	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_twoloops_first_loop}
+  		\caption{twoLoops function, Initial Setup}
+	\end{figure}
+	\item Run your twoLoops function, and you should see the numbers 1 through 5 displayed in the log.
+	\item Let's add a second loop, within the first loop.  After your console.log(i), add the following:
+	\begin{itemize}
+		\item A second loop variable, set initially to 1.  I use j as my second loop variable.
+		\item A while statement that stops when j <= 5.
+		\item console.log(j)
+		\item Increment j!
+		\item Note that you'll need the same curly braces for your while statement.
+	\end{itemize}
+	\item Your code should look as follows:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_twoloops_second_loop}
+  		\caption{twoLoops function, Second Loop Setup}
+	\end{figure}
+	\item Save and run the twoLoops function.  You should now see the initial pattern of 1, 12345, 2, 12345, 3, 12345, 4, 12345, 5, 12345.
+\end{itemize}
+
+\section*{Part 4: Debugging code}
+Often, especially with two loops, it is easy to get lost and difficult to figure out where you are, so to speak.  The computer has something to help with this - it's called the debugger
+\begin{itemize}
+    \item First, a history of what the heck a bug is:  \url{https://education.nationalgeographic.org/resource/worlds-first-computer-bug/}
+    \item Back in the day, a bug was an actual bug that disrupted the computer.  Today bugs are flaws in our code that cause problems.  We will need ways to find these bugs in our code!
+    \item Return to your twoLoops code.  Find the line that says console.log(j).  Look to the left - next to the line, you should see a purple circle.  Click the purple circle to turn it into a purple dot.  See below.
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_purple_dot}
+  		\caption{twoLoops function, Debugger}
+	\end{figure}
+	\item Once this dot is purple, go to the top of the page, by the run button.  You'll see a button for Debug - click it.  See below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_debug_button}
+  		\caption{twoLoops function, Debugger}
+	\end{figure}
+	\item A new window will appear on the right had side of the screen.  This is the debugger interface.  It allows you to look at the code at a specific point in time, and see what happens while the code is running.  You'll see information about the variables, what they are at this moment, and what functions are called at what lines of code.  See the following figure:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_debug_screen}
+  		\caption{twoLoops function, Debugger Screen}
+	\end{figure}
+	\item The purple line that says twoLoops: @ Code:24 - that's the line of code with the purple dot.  You can also see the varialbes of i and j, they are both 1.
+	\item Click the Resume button - it's the one that looks like the play button.  See below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_resume_button}
+  		\caption{twoLoops function, Resume Button}
+	\end{figure}
+	\item After you click the Resume button, the code continues to run until it hits the purple dot again.  At this point, you will see a change in your variables.  i is 1, but j is now 2.
+	\item Continue to click the resume button.  Watch the variables.  i should stay as 1, and j should go to 3, then 4, then 5.
+	\item Continue to click the resume button.  Watch the variables.  i should now be 2, and j should reset to 0.  Click the button a few more times.  i should stay at 2, and j should go from 1 to 2 to 3 to 4 to 5.
+	\item Continue to click the button.  i should go to 3, and j through 1, 2, 3, 4, 5. i should then become 4, j should go from 1 through 5, i should then become 5, and j should go form 1 to 5.
+	\item As our functions grow in size and complexity, use the debugger to see what things are like at a specific point and troubleshoot what might be going wrong.
+\end{itemize}
+
+\section*{Part 5: twoLoops, One List}
+Let's change up our loops a bit.  We will still need the first loop that goes from 1 through 5. Our second loop will go through a list of letters and display them.  Something like this:  1, a, b, c, d, 2, a, b, c, d, 3, a, b, c, d, 4, a, b, c, d, 5, a, b, c, d.
+\begin{itemize}
+    \item Create a new function called twoLoopsV2.  Send this function no arguments.
+    \item You will need a loop variable, set initially to 1.
+    \item You will also need a list of letters.  var list = ["a","b","c","d"]
+    \item Set up your first loop as you did in the previous function.  See the figure above.
+    \item Save and run the function.  You should get the numbers 1 through 5 displayed.
+    \item Within your first loop, you will need a second loop variable, initially set to zero.  var j = 0
+    \item You will need a second while statement.  This one run while your second loop variable is less than the list length.
+    \item Within the second loop, display the current list position.  Don't forget to increment your second loop variable.
+    \item Your code should look like this:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_twoloopsv2}
+  		\caption{twoLoopsV2 function}
+	\end{figure}
+	\item Save and run the function.  You should get the pattern described above.
+\end{itemize}
+
+\section*{Part 6: twoLoops, Two Lists}
+Now let's loop through two lists, using two loops.  We will want the pattern as described in part 5 - 1, a, b, c, d, 2, a, b, c, d, 3, a, b, c, d, 4, a, b, c, d, 5, a, b, c, d.
+\begin{itemize}
+    \item Create a new function called twoLoopsV3. Send this function no arguments.
+    \item Create the following two lists:
+    \begin{itemize}
+    		\item var list1 = [1, 2, 3, 4, 5]
+    		\item var list2 = ["a","b","c","d"]
+    	\end{itemize}
+    	\item You will also need a loop variable, initially set to zero.
+    	\item Create a while loop to display the contents of the first list.  Your code should look like this:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_twoloopsv3_first_loop}
+  		\caption{twoLoopsV3 function, One Loop}
+	\end{figure}
+	\item Save and run the function.  You should see the numbers 1 through 5.
+	\item Now set up your second loop.  You will need a second loop variable, initially set to zero.
+	\item Your loop must run through the length of the second list.  Within the second loop, display the position of the second list.  don't forget to increment your second loop variable!  
+	\item Your code should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_twoloopsv3_second_loop}
+  		\caption{twoLoopsV3 function, Two Loops}
+	\end{figure}
+	\item As you can see, you use one loop to loop through one list, while using the second loop to loop through the second list.  Note that you use list1[i] and list2[j].  Keep these ideas in mind as our lessons progress.
+\end{itemize}
+
+\section*{Part 7: vowelCount, 2 Lists}
+Let's look at how to count our vowels once again, only this time, use two lists to do so.
+\begin{itemize}
+    \item Create a main function.  Send this function no arguments.
+    \item Within main, create a new word variable, and assign the word banana to it.  var word = "banana"
+    \item Use console.log to display the word.
+    \item Create a new function called vowelCount.  Send this function one argument - word.
+    \item Within vowelCount, create a new list called vowels.  Set the list to be the vowels a, e, i, o and u.  var vowels = ["a","e","i","o","u"]
+    \item As we will need a count, set up a count variable, initially set to zero.  You will also need a ycount variable, also set to zero.
+    \item You will need a loop variable, initially set to zero.  Set up a while loop to loop through the word length.
+    \item Use console.log to show each position of the word, one character at a time.
+    \item Save this and run it, to make sure it works.  Remove the console.log line.
+    \item Once working you will need a second loop.  You'll need a loop variable, initially set to zero.
+    \item The second loop should loop through the list of vowels.
+    \item Within the second loop, compare the first position in the word to each position of the vowels list.  You'll need something about this:
+    \item if(word[i] == vowels[j])
+    \item Note that we are using the i variable to go thorough the word, and j to go through the vowel list.
+    \item If this is true, increase the count by one.
+    \item outside the second loop but before the first loop ends, compare the current position of word to y, and if true, increase ycount by one.
+    \item outside of both loops, if count is 0, return ycount.  Else, return count.
+    \item Your code should look like this:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_9_vowelcount}
+  		\caption{vowelCount Function}
+	\end{figure}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A twoLoops function (25 pts)
+    \item A twoLoopsV2 function (25 pts)
+    \item A twoLoopsV3 function (25 pts)
+    \item A vowelCount function (25 pts)
+\end{itemize}
+\end{document}

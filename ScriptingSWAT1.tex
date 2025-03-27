@@ -1,0 +1,239 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 1}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/19/2025}
+\newcommand {\ADueDate}{03/24/2025}
+\newcommand {\AAcceptDate}{03/26/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand the syntax of a function in Google Sheets
+    \item Access and utilize the Apps Script Extension
+    \item Write your first formula to display the text "Hello, World!"
+    \item Understand and use the if statement in code (similar to the IF function in Sheets)
+\end{itemize}
+
+
+\section*{Part 1: Create and share a folder}
+\begin{itemize}
+    \item In your Google Drive, create a folder called \texttt{COMP-190-FirstName-LastName}, changing \texttt{FirstName} to your first name and \texttt{LastName} to your last name.
+    \item Once created, share this folder with \texttt{aleeithaca@gmail.com}. Ensure that you make me an editor.
+    \item Now, get the start file for today.  It is here:  \href{https://docs.google.com/spreadsheets/d/1c8rY__uY16zxf3txmKeaJEFhvZC_TXYjo3vKsJoKHhE/edit?usp=sharing}{START FILE}.  Once you have the file open, click File, then Make a copy.  Place a copy of this file into your COMP 190 folder that you created above.
+\end{itemize}
+
+\section*{Part 2: Spreadsheets - Function Review}
+Let us harken back to the early days of COMP 110, when we first talked about functions.  As this class will be all about writing your own custom functions, let's review how the already built in functions work.  Then we will know what pieces we need in order to use our own functions in the spreadsheet.
+\begin{itemize}
+	\item  The syntax of any function is as follows: \textit{FunctionName(0, 1, or many arguments)}
+	\item Let's look at each piece:
+		\begin{itemize}
+			\item \textit{FunctionName:}  This is the name of the function.  When you write your own functions, you can name them as you see fit.  Usually you want to name them something meaningful, such as the operation you are doing or the problem you are trying to solve.  This does not mean you cannot have fun with function names - I will often name my functions George or Harriet, just because.
+			\item 0, 1, or many arguments - each function name is immediately followed by an open parenthesis.  Within these parenthesis are arguments.  Depending on the function, there will be 0, 1 or many arguments.
+				\begin{itemize}
+					\item TODAY is an example of a 0 argument function.  The computer needs nothing in order to run the TODAY function.
+					\item SUM is an example of a function that needs at least 1 argument, but can have many.  Usually you see the SUM function with a range as the only argument - SUM(A1:A10) is an example.
+					\item The IF function is an example of a function with many arguments - 3, in fact.  A logical\_expression, a value\_if\_true, and a value\_if\_false.  With any functions that have many arguments, they are separated by commas.
+				\end{itemize}
+			\item You will write functions with all three numbers of arguments.  Usually it will be 0 or 1, but you will write a few with 2 or 3.
+		\end{itemize}
+	\item The syntax of your custom functions will be similar.  Don't be afraid to try, and ask questions as we proceed!
+\end{itemize}
+
+\section*{Part 3: The TODAY() Function - A Deeper Look}
+Today we will discover and use Google Apps Script.  We will write our first function, see how it works in the spreadsheet, and start outlining some differences and similarities between Google Sheets and Google Apps Script.
+\begin{itemize}
+	\item In your COMP-190 folder, go to the SWAT 1 START file you copied earlier.  Go to the Sandbox worksheet.
+	\item First, let's look at a simple function, and see what is happening.  In cell A1, type the following formula:  =TODAY()  When we do this, what is happening?
+		\begin{itemize}
+			\item First the = sign.  This character lets the computer know that it is about to do something.  This could be referencing a cell, or doing math to some numbers.  It can also call functions.
+			\item Next is the function name of TODAY.  When we use the = sign, we are \textit{calling} the function named TODAY.
+			\item When a function is called, any arguments needed to run the functions are sent to the computer.  This is the () at the end of TODAY - the computer does not need anything to run the function, but still needs the parenthesis to know that TODAY is a function.
+			\item Finally, the computer does its thing, and \textit{returns} the current date.  
+		\end{itemize}
+	\item So, the = sign calls the TODAY function to be run, with nothing sent.  The computer then returns the current date.
+\end{itemize}
+
+\section*{Part 4:  Hello, World}
+The first assignment of any programming course is to display Hello World.  We will write our first custom function to do exactly this!
+\begin{itemize}
+    \item In your SWAT 1 Google Sheets file, click Extensions, then Apps Script.  A new tab should appear, with your Untitled Project.
+    \begin{figure}[H]
+  \centering
+  \includegraphics{apps_script}
+  \caption{Where To Find Google Apps Script}
+\end{figure}
+	\item Click Untitled Project along the top.  Rename this to SWAT 1.
+	\item Below, you will see some code, already written for you. 
+	\begin{figure}[H]
+  \centering
+  \includegraphics{my_function}
+  \caption{Default Code in Apps Script}
+\end{figure} 
+	\item Before we even write any code, let's look at what's already here and identify some syntax.
+		\begin{itemize}
+			\item function - this let's the computer know that we are writing a function.
+			\item myFunction - this is our function name.  Note the use of capitalization - the my is lower case, the Function is upper case.  This is a standard way to name function that have two "words" in them (no spaces!).
+			\item The () tells the computer what to expect, if we have to send it any arguments.  Like TODAY, we will not be writing a function with an argument, so we will not need to put anything here.
+			\item { } These curly braces indicate a \textit{block} of code.  These are basically instructions on what you want the computer to do.  Often you will need more than one block of code.  Sometimes you will need a block of code, within a block of code!
+		\end{itemize}
+	\item Now let's make some changes!  First, change myFunction to helloWorld
+	\item Now, we need only do one thing - send some text back to the spreadsheet.  To do so, we must use the return keyword.  return is important to remember, as it is usually the last thing we do in our functions.  return is how we get our results back to the spreadsheet.
+	\item Go down to the blank line under function and type return "Hello, World!"  Note that text works the same way in Apps Script as it does in Sheets - enclose Hello, World in quotes ( " ) to make it text!
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hello_world}
+  		\caption{Write This Code}
+	\end{figure} 
+	\item Now that we have written the code, we now need to save it.  Unlike Google Sheets, we need to explicitly save our work - otherwise, it is lost.  Look above the code, and you will see a floppy disk icon.  This is how to save the project.  Click that icon to save!
+	\begin{figure}[H]
+  \centering
+  \includegraphics{script_menu}
+  \caption{Save and Run Icons}
+\end{figure} 
+	\item Go back to your spreadsheet.  In cell A2, write the following formula:  =helloWorld()
+	\item Your message of "Hello, World!" should be displayed.  Congratulations!  You have successfully written your first function!  The first of many. 
+\end{itemize}
+
+\section*{Part 5: Comments}
+One of the best things you can do when writing code is commenting on it.  This allows you to explain what is happening, what each part of the function does, etc.  It helps you think about how to write code, and is useful for communicating your thoughts with others.  I will definitely be looking at your code, and telling me what's going on will be helpful!
+\begin{itemize}
+	\item To write a comment in Apps Script, begin with //.  This is the syntax for starting a comment.
+	\item A comment is actually an instruction to the computer:  Ignore this line.
+	\item You can write anything you wish as a comment, and it will not affect the code you write.
+	\item Go to your helloWorld function.  Start a new line at the beginning of your function and type //
+	\item Then, write a brief description of the helloWorld function.  Something like "This function returns the text "Hello, World!"  See figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{hello_world_with_comment}
+  		\caption{Write This Code}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 6: Branching}
+One of the most important concepts in computer science is branching.  This is doing one thing if something is TRUE, and something else is FALSE. In spreadsheets, this is the IF function.  In code, this is known as an if statement, and works similarly.
+\begin{itemize}
+	\item We have already done the work for today, in SWAT 8.  Feel free to open SWAT 8, and reference the functions we used, in order to complete the code examples in class.
+	\item Next, review the SYNTAX of the IF function.  IF(logical\_expression, value\_if\_true, value\_if\_false)
+	\item In our IF function, the first thing we do is the logical\_expression, which is a comparison between two "things."  Comparison is different between Sheets and code, however.  See the figure below.
+	\begin{figure}[H]
+  \centering
+  \includegraphics{sheets_code_comparison}
+  \caption{Differences between Comparison, Sheets and Code}
+\end{figure} 
+	\item Once we have evaluated our logical\_expression, we can then do something if the result is TRUE, or the result is FALSE.  It will be done a little differently than the IF function.  Let's see an example!
+\end{itemize}
+
+\section*{Part 7: passFail}
+Now that we know a little bit more about code, let's first write the IF function in the spreadsheet, then translate that into a new function in Apps Script.
+\begin{itemize}
+	\item Go to the passFail worksheet.  In cell C2, write a formula that uses the IF function to display "Pass" if the final score $>=$ 60 and "Fail" if it is not.
+	\item Your formula should look like this:  =IF(B2 $>=$ 60, "Pass","Fail")
+	\item Now let's write this in Apps Script.  Go to your Apps Script, and give yourself a few lines of separation from helloWorld.
+	\item Write a new function named passFail.  You will send it one argument - call it grade.  Then, have an open and closed curly brace. Within the braces, add a comment.  The comment should be the function purpose - to display pass/fail.  See the figure below.
+	 \begin{figure}[H]
+  \centering
+  \includegraphics{initial_passfail}
+  \caption{Setting up the passFail function}
+\end{figure}
+	\item Now we are ready to start coding.  We will use if statements, which are similar to the IF function.  You will start with if, then in parenthesis, put your logical expression.  In this case, we want to see if the grade we sent is $>=$ 60.  Your code should look like this:
+	\item if(grade $>=$ 60)
+	\item Pretty similar to our IF function, it's basically the logical\_expression argument, just done with the grade argument instead of a cell reference.
+	\item Just like the IF function in sheets, the if statement in code results in TRUE or FALSE.  If the result is TRUE, it does the first thing directly below the if statement.  In this case, we wish to return the text of pass.  
+	\item Go to the next line, and indent the line using the tab key.  Indentations make your code more easily read.  Then, return "Pass"
+	\begin{figure}[H]
+  \centering
+  \includegraphics{passfail_2}
+  \caption{if statement for passFail} 
+\end{figure}
+\item At this point, we have checked to see if the grade is passing.  If it is not, we don't need to do any further checking, because if it's not passing, it's failing.  We can simply return the text of "Fail".
+  \item Your completed function should look as follows:
+  \begin{figure}[H]
+  \centering
+  \includegraphics{passfail_3}
+  \caption{Completed passFail Function} 
+\end{figure}
+	\item Now go back to your spreadsheet.  On the passFail worksheet, use your newly created passFail function to display "Pass" or "Fail" on the sheet.  The results should match your IF function.
+\end{itemize}
+
+\section*{Part 8: sdf}
+Let's expand our if statements with three results, like we did in SWAT 8.
+\begin{itemize}
+	\item Go to the SDF worksheet.  You will see the same final scores as in the passFail worksheet, but now we want to display one of three grades - S, D or F.
+	\item If the grade $>=$ 70, the result should be S.  If it is $<$ 70, but $>=$ 60, the result should be a D.  Anything else should be an F.
+	\item Write a formula that uses the IF function to display the proper result, based on the grade.  
+	\item Your IF function should look like this:  =IF(B2 $>=$ 70, "S", IF(B2 $>=$ 60, "D", "F"))
+	\item Note that we have 2 IF functions here.  We will need two in our code as well.
+	\item Go to your Apps Script.  Set up a new function called sdf, that receives a grade.  Don't forget your curly braces!
+	\item Before you code, add a comment to show the purpose of the function, which is to return "S", "D" or "F"
+	\item Within your function set up an if statement to see if the grade is $>=$ 70, and if it is, return the result of "S"
+	\item Now write a second if statement, this time checking to see if the grade $>=$ 60, and if it is, return the result "D"
+	\item At this point, it's not S, and it's not D, so return "F"
+	\item Your code should look as follows:
+	\begin{figure}[H]
+  \centering
+  \includegraphics{sdf_final}
+  \caption{Completed sdf Function} 
+\end{figure}
+\end{itemize}
+
+\section*{Part 9: letterGrades}
+Now let's get the grades one last time - this time, assigning an A, B, C, D or F.
+\begin{itemize}
+	\item Go to the letterGrades worksheet.  You will see the same information, this time asking to translate the grades into letter grades.  
+	\item In Apps Script, write a function called letterGrades.  Send this function a grade.  Set up a comment as to the function's purpose.  
+	\item This function should return the appropriate letter grade, based on the number grade.  You will need four if statements.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A spreadsheet with an Apps Script that is used to display the text "Hello, World!"
+    \item A function called passFail that displays "Pass" or "Fail" based on grade.
+    \item A function called sdf that displays S, D or F based on grade.
+    \item A function called letterGrades that displays A, B, C, D or F based on grade.
+\end{itemize}
+\end{document}

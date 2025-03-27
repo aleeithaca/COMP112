@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 5}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{04/02/2025}
+\newcommand {\ADueDate}{04/07/2025}
+\newcommand {\AAcceptDate}{04/09/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Set up a spreadsheet and function to analyze Kaprekar's Magic \url{https://en.wikipedia.org/wiki/6174}
+    \item Understand how to set up a loop to count how many times a loop runs.
+\end{itemize}
+
+
+\section*{Part 1: Copy the file}
+\begin{itemize}
+    \item Open the following file:
+    \item \url{https://docs.google.com/spreadsheets/d/1KKXr0CIcNK-MyaYaok8wXNnhdu93WeFRoZlewQm_JWs/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Place a copy of this file (and it's associated Apps Script) into your COMP-190 folder.
+\end{itemize}
+
+\section*{Part 2: Spreadsheet Functions}
+We will begin in the spreadsheet, and will need a few functions for our lesson today.
+\begin{itemize}
+    \item MOD(number, divisor) - the mod function returns the remainder from division.  Remember how in the Apps Script, 3\%2 gives the result of 1; 1 is the remainder of the division.  The MOD function does the same thing.  =MOD(3, 2) would result in 1.
+    \item TRUNC(number) - the TRUNC function performs truncation.  Truncation is the act of removing the decimal from a number, leaving just the number.  This is different from rounding, which will round the number up or down.  We don't want to round, we want to truncate. 
+\end{itemize}
+
+\section*{Part 3: Kaprekar's Magic, 1st Time}
+We will now look at Kaprekar's Magic, using spreadsheet functions.
+\begin{itemize}
+    \item In your SWAT 5 Google Sheets file, type a 1 under a, a 2 under b, a 3 under c and a d under 4.
+    \item Now that we have four digits, we need to make the biggest number out of those digits that we can.  We have done this already - it's the maxOfFour function we wrote a couple of weeks ago.
+    \item GO back to your spreadsheet.  In cell F2, use your maxOfFour function to find the biggest four digit number.  You should get a result of 4321.
+    \item Similarly, in cell G2, use your minOfFOur function to find the smallest of the four digits.  You should get a result of 1234.
+    \item Now, in cell  H2, take the max and subtract the min - use =F2-G2.  You should get a result of 3087.  See screenshot below.
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_kmagic_ss_1}
+  		\caption{Kaprekar's Magic, 1st Time}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 4: Kaprekar's Magic, Create Four Digits}
+Now we will need to break apart our result of 3087 into the individual digits of 3, 0, 8 and 7.
+\begin{itemize}
+    \item Let's get d first.  Go to cell E3.  Here, use the MOD function to get the remainder of cell H2 when divided by ten.  Your formula should look something like this:  =MOD(H2, 10).  This should result in 8.
+    \item Now to get the c.  Go to cell D3.  Here, divide H2 by 10.  You should get 307.8
+    \item We will need to truncate this result with the TRUNC function, leaving just 308.  Your formula should look something like this:  TRUNC(H2/10).
+    \item Now, let's use our MOD function to take the 308, divide it by ten, and show the remainder.  Your formula should look like this:  =MOD(TRUNC(h2/10), 10).  You should get a result of 8.
+    \item Now, to find the b.  Go to cell C3.  Here, divide H2 by 100.  You should get 30.8
+    \item We will need to truncate this result with the TRUNC function, leaving just 30.  Your formula should look something like this:  TRUNC(H2/100).
+    \item Now, let's use our MOD function to take the 30, divide it by ten, and show the remainder.  Your formula should look like this:  =MOD(TRUNC(h2/100), 10).  You should get a result of 0.
+    \item Now to find the a.  Simply divide H2 by 1000, and truncate it.  You should have the following:  =TRUNC(H2/1000).
+    \item Now that you have your four digits, use your fill handle to copy the formulas from F2, G2 and H2, and it should do your max, min and subtraction.
+    \item Your sheet should look as follows:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_kmagic_ss_2}
+  		\caption{Kaprekar's Magic, 2nd Time}
+	\end{figure}
+	\item Now use your fill handle to copy the formulas all the way to row 8.  This should complete the sheet!  It should look like the screenshot below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_kmagic_ss_3}
+  		\caption{Kaprekar's Magic, Complete}
+	\end{figure}
+	\item Test it!  Change the digits for a, b, c and d in row 2.  Note that all the digits cannot be the same (you cannot use 9999, but 9991 would be just fine).  No matter what four digits you put in there, by the 7th time, the numbers always resolve to 6174.
+\end{itemize}
+
+\section*{Part 5: Kaprekar's Magic, Apps Script}
+Let's recreate the magic, so to speak, in Apps Script
+\begin{itemize}
+    \item In Apps Script, create a new function called magic.  Send this function four arguments - a, b, c and d.
+    \item Within your magic function, you will need the following variables:
+    \begin{itemize}
+    		\item A variable called result, initially set to zero.
+    		\item A loop variable, as we will need a loop that runs seven times.
+    	\end{itemize}
+    	\item Set up a while loop, to run while your loop variable is less than or equal to 7.  Within the loop, we need to do the following:
+    	\begin{itemize}
+    		\item We first need to find the result of the maxOfFour(a, b, c, d) - minOfFour(a, b, c, d).  Use your result variable for this.
+    		\item Like we did in our spreadsheet, we need to break the result apart into a, b, c and d.
+    		\item To get d, take your result and \% by ten.  It should look like this:  d = result \% 10.
+    		\item Next, take your result and divide by ten.  It should look like this:  result = result / 10.
+    		\item Finally, we need to truncate our result, to drop the decimal.  Just like the spreadsheet, Apps Script has built in functions that will perform certain operations.  We will need the following:  Math.trunc()
+    		\item Yes, case matters.  Math needs to be capitalized, and will turn pink when typed.  Within the parenthesis is the argument.
+    		\item Putting this all together, your next line of code is as follows:  result = Math.trunc(result)
+    		\item To get c and b, follow a similar pattern.  First is result \% 10, result = result /10, result = Math.trunc(result)
+    		\item Once you have c and b, a is simply result.
+    		\item Before you exit the loop, increment the loop variable by 1.
+    	\end{itemize}
+    	\item Once outside the loop, return a * 1000 + b * 100 + c * 10 + d * 1
+    	\item Your code should look as follows:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_magic}
+  		\caption{Kaprekar's Magic, magic function}
+	\end{figure}
+    	\item Test this using your main() function, and once working, the spreadsheet.  You should get nothing but the result of 6174.
+\end{itemize}
+
+\section*{Part 6: Kaprekar's Magic, How Many Times?}
+We know that any four digit number (provided all four digits are not the same), when you take the max of four - min of four, will result in 6174 within 7 times.  THe issue is, sometimes it happens immediately.  Sometimes it takes 2 or three times, sometimes it takes all 7 times.  The question is now not that the result will be 6174 - the question is, how many times does the loop run until it becomes 6174?
+\begin{itemize}
+	\item Go to the spreadsheet, and change the initial four digits to 1, 2, 3 and 4.  Once the formulas resolve, you should see 6174 at time 3.
+	\item Now set the initial digits to 1, 2, 3, and 5.  This time, it takes until time 7 to reach 6174.  
+	\item In Apps Script, we wish to set up the magic function to se how many times the loop runs until 6174 is reached.  If the initial digits are 1, 2, 3 and 4, the number of times is 3.  If the digits are 1, 2, 3 and 5, the number of times is 7.
+	\item Copy your magic function.  Paste it, and rename it to magic2.
+	\item Changes need to be made.  You are no longer running the loop seven times.  Instead, your condition must be set up to run when the result is NOT 6174.
+	\item Another change is the result.  Previously, we returned the result of 6174.  This time, we need to return a count of how many times the loop has run.
+	\item Putting this all together, make the following changes:
+	\begin{itemize}
+		\item  Remove your loop variable (most likely i).  You can put two slashes in front of it to make it a comment, which is the same as deleting it.
+		\item Create a new variable called count, initially set to 1.
+		\item Change your result variable to be maxOfFOur(a, b, c, d) - minOfFour(a, b, c, d)
+		\item Change the condition on your loop to run when result is not equal to 6174.
+		\item Within your loop, move your result calculation to the line after a = result
+		\item Within your loop, instead of incrementing your loop variable (most likely i), increment count.
+		\item Outside the loop, return count instead of your calculation.
+	\end{itemize} 
+	\item Your code should look as follows:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_5_magic2}
+  		\caption{Kaprekar's Magic, magic2 function}
+	\end{figure}
+	\item Test this function from main() and the spreadsheet.  with digits of 1,2,3 and 4, the function should return 3.  With digits of 1, 2, 3 and 5, it should return 7.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A spreadsheet with basic division, truncation and mod (20 pts)
+    \item A magic function (30 pts)
+    \item A magic2 function (30 pts)
+\end{itemize}
+\end{document}

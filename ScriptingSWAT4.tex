@@ -1,0 +1,333 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 4}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/31/2025}
+\newcommand {\ADueDate}{04/02/2025}
+\newcommand {\AAcceptDate}{04/07/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand and use loops
+\end{itemize}
+
+
+\section*{Part 1: Create The File}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file.  Rename this file to SWAT 4.  Once opened, go to Extensions, then Apps Script.  Rename the project to SWAT 4.
+\end{itemize}
+
+\section*{Part 2: Function Setup - main and isEven}
+Let's get our code set up to run from inside Apps Script.  We will need a main function.  We will also need the setup to our next function, isEven.
+\begin{itemize}
+	\item In your SWAT 4 Apps Script, write a function called main.  This function needs zero arguments.
+	\item Within main, create a variable called num, and assign it a number.
+	\item Within main, use console.log to display the num variable.
+	\item Save and run main, and make sure it works.
+	\item In Apps Script, write a new function called isEven.  This will need one argument - num.  See figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_main_1}
+  		\caption{main and isEven Setup}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 3: Divide Different - \%}
+Computer science is applied mathematics.  As such, we need to recall some math, specifically surrounding division.
+\begin{itemize}
+	\item Recall division in mathematics.  For example, take 4 divided by 2.  When you do this, the answer is 2. 
+	\item There's a second answer to the question.  2 is the answer, aka the \textit{quotient}.  There is also the \textit{remainder} - what's left over as a result of the division.
+	\item In our example, 4 divided by 2 has a quotient of 2 and a remainder of 0.
+	\item We can use this to determine if a number is even.  If the remainder equals zero, the number is even.  If the remainder is not equal to zero, the number is odd.
+	\item How does Apps Script find the remainder?  Use the \% symbol.
+	\item Using our example from above 4 \% 2 will result in zero - it shows the remainder of the division, not the quotient.
+\end{itemize}
+
+\section*{Part 4: isEven Function}
+Now let's write a function to determine if a number is even of not.
+\begin{itemize}
+    \item In your isEven function, write an if statement that checks to see if the remainder of the num argument and 2 is equal to 0.  If it is, return true.  If not, return false.  See the figure below:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_iseven_1}
+  		\caption{isEven Complete}
+	\end{figure}
+	\item Save your project.  Modify your main function so that console.log calls the isEven function, sending the num variable.  Save and run the project.  You should get true if the number is even, and false if it is not.
+	\item Test your function!  In you main function, change the numbers assigned to your num variable, and make sure isEven works.  Once you are confident it is working, call isEven from the spreadsheet.
+\end{itemize}
+
+\section*{Part 5:  displayNums}
+Using what we already know, let's use variables and console.log to display the numbers 1 through 5.
+\begin{itemize}
+	\item In Apps Script, create a new function called displayNums.  Send this function no arguments.  Create a comment in the first line of the function, outlining the function's purpose - display the numbers 1 through 5.
+	\item Within the displayNums function, create a new variable called i, initially set to 1.
+	\item Next use console.log to display the i variable.
+	\item Now we need to make i the value of 2.  You could say i = 2, but that's not useful.  Instead, use i = i + 1.
+	\item Use console.log to display the i variable.
+	\item Add 1 to i, making the value 3.
+	\item Use console.log to display the i variable.
+	\item Add 1 to i.
+	\item Use console.log to display the i variable.
+	\item Add 1 to i.
+	\item Use console.log to display the variable i.
+	\item Your code should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_displaynums_code}
+  		\caption{displayNums Function}
+	\end{figure}
+	\item Save and run this function.  You should get the following output:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_displayNums_output}
+  		\caption{Expected Output, displayNums}
+	\end{figure}
+\end{itemize}
+
+\section*{Part : displayNums with Loop}
+One big difference between spreadsheets and code is the concept of doing things over and over and over again.  Spreadsheets can't really do it, while code does it well.  Our next big computer science concept is loops.
+\begin{itemize}
+	\item In our example from part 4, there's a lot of repetition.  i = i + 1 happens many times, and console.log(i) happens many times.  
+	\item Whenever you see something happening over, and over, and over again, you will want a loop.
+	\item Have you ever watched the Olympics, and seen the track and field events?  The athletes run around a track, over and over, until they've gone a certain distance.  The same concept applies here.  We are going to do something, over and over, until a condition is met.
+	\item Let's first talk about conditions.  We have seen these with the if statements - it's a comparison, resulting in TRUE or FALSE.
+	\item With an if statement, we only do one thing.  With loops, we can do many things, over and over again, so long as the condition is TRUE.
+	\item We need a new keyword - while.  This is our first type of loop - while a condition is TRUE, do stuff.
+	\item The syntax of a while loop is similar to an if statement.  It looks like the following:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_while_loop_example}
+  		\caption{while Loop Syntax}
+	\end{figure}
+	\item Let's apply this to our problem from above.  in Apps Script, create a new function called displayNumsLoop.  Send this function no arguments.  Within the function, create a comment outlining the purpose of the function, which is to display the numbers 1 through 5 using a loop.
+	\item Before we begin, we will need a few things:
+	\begin{itemize}
+		\item We will still need our i variable, initially set to 1.  This is known as a loop variable, and is what we will use in our condition.
+		\item We need a condition.  Since we have our i variable, we want the loop to run while i $<=$ 5.
+		\item Within the loop itself, we will need to do two things:  use console.log to display i, and add one to i.
+	\end{itemize}
+	\item Set up your displayNumsLoop function as follows:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_displaynumsloop_code}
+  		\caption{displayNumsLoop Code}
+	\end{figure}
+	\item Save and run the displayNumsLoop function.  You should get the same output as before!
+\end{itemize}
+
+\section*{Part 6: display "a"}
+Let's practice!  I wish to see the character "a" five times.
+\begin{itemize}
+	\item In Apps Script, write a new function called firstLoop.  This function needs no arguments.
+	\item Here's the expected output of this function:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_firstloop_output}
+  		\caption{Expected Output, firstLoop}
+	\end{figure}
+	\item Let's answer the questions we had above, and piece this together.
+	\begin{itemize}
+		\item Our first question:  What's being done?  The answer - display in our log.  console.log("a") is what we want to do.
+		\item How many times?  We need a total of five times.  
+		\item We will need to start at 1, then go to 2, then 3, then 4, then 5.
+	\end{itemize}
+	\item Putting this together, we will need a few things.  
+	\item Within your firstLoop function, create a new variable called i, initially set to 1.
+	\item Next, we need to set up our loop.  We will need the while keyword, and a condition.  Our condition is that the loop needs to run, while i is less than or equal to five.
+	\item Finally, within our loop, we will need to console.log("a") and increment variable i by 1.
+	\item Set up your firstLoop function to look like the code below:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_firstloop_setup}
+  		\caption{firstLoop Setup}
+	\end{figure}
+	\item Save your project, and run the firstLoop function.  You should see the letter "a" displayed 5 times.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_firstloop_output}
+  		\caption{firstLoop output}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 7: secondLoop}
+Let's write a function called secondLoop.  I will post the screenshot of the expected output - you must write the code so that when the secondLoop function is run, you get the same output.
+\begin{itemize}
+	\item See the screenshot below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_second_loop_output}
+  		\caption{secondLoop Expected Output }
+	\end{figure}
+	\item What must you do in order to make this happen?  See the displayNumsLoop function for inspiration!
+\end{itemize}
+
+\section*{Part 8: thirdLoop}
+secondLoop displays the numbers 1 through 10, starting at 1.  How do we show the same numbers, only this time, starting at 10, and ending at 1?
+\begin{itemize}
+	\item See the screenshot below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_thirdloop_output}
+  		\caption{thirdLoop Expected Output }
+	\end{figure}
+	\item How do we do this?  Here's a couple of hints.
+	\item Start i at 10.  Instead of i = i + 1, use i = i - 1.
+\end{itemize}
+
+\section*{Part 9: fourthLoop}
+thirdloop shows how to work backwards through numbers.  fourthLoop moves forwards through numbers again, but how?
+\begin{itemize}
+	\item See the screenshot below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_fourthloop_output}
+  		\caption{fourthLoop Expected Output }
+	\end{figure}
+	\item How do we do this?  Here's a couple of hints.
+	\item Start i at 2.  What do you need to do to 2 to get 4?  Once you have 4, how do you get to 8?  From 8, how do you get to 16?
+\end{itemize}
+
+\section*{Part 10: fifthLoop}
+Here we will use loops in a different way.  How do we count the number of numbers between 1 and 10?
+\begin{itemize}
+	\item Create a new function called fifthLoop.  This functions should receive no arguments.
+	\item Our ultimate goal is to count numbers.  We will set up a loop that runs from 1 to 10.  We will count how many numbers there are.
+	\item I realize that it is easy to tell how many numbers there are - it's ten.  Let's make the computer do it.
+	\item Within your fifthLoop function, create a new variable called count.  Set the initial value to 0.
+	\item You will also need a loop variable called i, initially set to 1.
+	\item Set up a while loop similar to the one in your firstLoop function.  It should run while i $<=$ 10.
+	\item Within your loop, you will need to do 2 things:  add 1 to your count, and add 1 to your loop variable of i.
+	\item Once the loop is finished, use console.log to display the count.
+	\item Your finished code should look something like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_fifthloop_code}
+  		\caption{fifthLoop Code}
+	\end{figure}
+	\item Once run, your log should display 10.
+\end{itemize}
+
+\section*{Part 11: sixthLoop}
+Similar to fifthLoop, sixthLoop will add the numbers 1 through 10 using a loop.
+\begin{itemize}
+	\item Copy your fifthLoop function, and rename it to sixthLoop.
+	\item Rename your count variable to sum.  It should still start at zero.
+	\item Your loop will run from 1 to 10 - no changes needed.
+	\item Within your loop, you will need to change count = count + 1 to something else.
+	\item sum = sum + 1 is not quite right.  When adding, what should be added to sum?  It's not the number 1 - it's the i variable.
+	\item Once done with the loop, use console.log to display the sum.
+	\item Your completed code should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_sixthloop_code}
+  		\caption{sixthLoop Code}
+	\end{figure}
+	\item Once run, your log should display 55, the sum of the numbers 1 through 10.
+\end{itemize}
+
+\section*{Part 12: seventhLoop}
+The average of the numbers between 1 and 10 is 5.5.  This is the sum divided by the count.  How do we do this with a loop?
+\begin{itemize}
+	\item Copy your sixthLoop function.  Rename it to seventhLoop.
+	\item You should already have a variable for your sum, set to zero.  Create a variable called count, also set to zero.
+	\item Within our loop, in addition to adding i to sum, add 1 to count.
+	\item Use console.log to display the average, aka sum/count
+	\item Once run, your log should display a value of 5.5
+\end{itemize}
+
+\section*{Part 13: eighthLoop}
+Let's use our isEven function to count the number of even numbers between 1 and 10.
+\begin{itemize}
+	\item Copy your fifthLoop function.  Rename it to eighthLoop.
+	\item We will need to add an if statement within our loop.  The if statement should only add one to the count if the result of the isEven function is true.
+	\item When setting up your if statement, call the isEven function, sending the function the i variable. You want to see if it is exactly the same as the value of true.
+	\item Your final code should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_eighthloop_code}
+  		\caption{eighthLoop Code}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 14: ninthLoop}
+We will do things a little differently here.  Instead of staying within AppsScript, we will write functions that can be called from the spreadsheet and from within AppsScript.  We will need to return values instead of using console.log.  
+\begin{itemize}
+	\item Let's start with our overall goal:  We want to count the number of even numbers between 1 and an end value we choose.  eighthLoop counted the even numbers between 1 and 10. In ninthLoop, we will count the even numbers between 1 and an end number of our choosing.
+	\item Create a new function called ninthLoop.  This function should receive one argument - end, which is an end value of our choosing.
+	\item You will need 2 variables - a count, and a loop variable.  count should start at zero, and your loop variable should start at 1.
+	\item Set up your while loop.  What condition should be used, now that we are stopping at our end argument, and not 10?
+	\item Within your loop, similar to eighthLoop, use an if statement to see if your loop variable is even.  If it is, count it.
+	\item Before you leave the loop, move your loop variable one step closer to the end condition.
+	\item Once the loop is finished, return the count.
+	\item Your code should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_4_ninthloop_code}
+  		\caption{ninthLoop Code}
+	\end{figure}
+	\item Return to your main() function.  Set up a new variable called end, and give it a number (10 is a good one).
+	\item In main, use console.log to call the ninthLoop function, sending the end variable.
+	\item Save the project, and run the main() function.  If you used 10 as end, you should get a result of 5.
+	\item Call the ninthLoop function from the spreadsheet and make sure it works.  Be sure to try it with different end numbers!
+\end{itemize}
+
+\section*{Part 15: tenthLoop}
+Similar to ninthLoop, write a function to count the odd numbers.
+\begin{itemize}
+	\item Copy the ninthLoop function.  Rename it to tenthLoop.
+	\item Modify the function to count the number of odd numbers.  You should have to change one thing only.
+	\item Return to your main() function.  Make sure the end variable has a number.
+	\item In main, use console.log to call the tenthLoop function, sending the end variable.
+	\item Save the project, and run the main() function.  If you used 10 as end, you should get a result of 5.
+	\item Call the tenthLoop function from the spreadsheet and make sure it works.  Be sure to try it with different end numbers!
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item Ten loop functions (10 pts/function)
+\end{itemize}
+\end{document}

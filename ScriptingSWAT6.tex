@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 6}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/07/2024}
+\newcommand {\ADueDate}{11/12/2024}
+\newcommand {\AAcceptDate}{11/14/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand the structure, syntax and use of lists
+\end{itemize}
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file.  Rename this file to SWAT 6.  Open Apps Script.  Rename the project to SWAT 6.
+\end{itemize}
+
+\section*{Part 2: Lists Overview}
+We are now going to look at lists, which is akin to a row.  Fundamental to computer science, we must now look at how the code "sees" collections of values.
+\begin{itemize}
+    \item A list is a collection of values. Anything can be in a list - text, numbers, boolean - the list (no pun intended!) is endless.
+    \item The syntax for a list is the following:  [ STUFF GOES HERE ]
+    \item For example, this is a perfectly valid list:  ["George", true, 12, 14, -1, 57, "purple"]
+    \item Recall variables - a space to put things.  You can put a list into a variable.
+    \item var example = ["George", true, 12, 14, -1, 57, "purple"]
+    \item In Apps Script, create a new function called main - this needs no arguments.  
+    \item Within your main function, create a new variable called example.  Set example to equal ["George", true, 12, 14, -1, 57, "purple"].
+    \item On the next line, use console.log to show the example variable.  Your code should look like this:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_6_main_example}
+  		\caption{List Example}
+	\end{figure}
+	\item Your log should show the list.
+\end{itemize}
+
+\section*{Part 2: List Properties}
+Let's learn about lists!
+\begin{itemize}
+    \item Everything in Apps Script (or any language, really) has properties.  
+    \item A property of something is a description of a thing.  For instance, a property of you is your height, or your eye color, or hair color, etc.
+    \item Lists have properties - one of them is length.  length tells us how many things are in our list.
+    \item The syntax for a property is \textit{listname}.\textit{property} If I have var list, to get the length, use list.length
+    \item In your main function, change console.log(example) to console.log(example.length).  You should get a result of 7, as that is how many things there are in the list. 
+\end{itemize}
+
+\section*{Part 3: List Position}
+How do we display individual things in a list?  
+\begin{itemize}
+    \item One of the most fundamental things in computer science is the difference between counting and position.  Counting starts at 1.  When you're counting the number of objects in a list, you start counting at 1.
+    \item Position is quite different - position starts at zero.  While there are seven objects in the list, the positions in the list are zero through 6.
+    \item The syntax for looking at individual positions in a list is listname[position].  In our example list, to get "George", you would use example[0].  
+    \item In your main function, change console.log(example.length) to console.log(example[0]).  Run it, and you should get the text "George"
+    \item What position would you use to get the number 12? Test it and make sure it works. 
+    \item A brain buster:  How would you get the text "purple" without using example[6]?  Recall that example.length is 7, so what could you put into the [] to address the 6?  If you said example[example.length - 1], you're right!  Test this, and make sure it works.
+\end{itemize}
+
+\section*{Part 4: displayList function}
+Let's use a loop to display our list.
+\begin{itemize}
+    \item In Apps Script, create a new function called displayList.  This function needs no arguments.
+    \item Copy var example = ["George", true, 12, 14, -1, 57, "purple"] into this function.
+    \item As we will need a loop, we will need a loop variable - I like i.  Set the initial value to 0.  Why?
+    \item Set up your while loop.  For your condition, we need to go through the entire list.  We will need to display 7 individual positions, starting at zero, and ending at 6.  How do we stop at 6, in the context of example.length?
+    \item There are two ways to do this:
+    \begin{itemize}
+    		\item while(i $<=$ example.length - 1) - this will start at zero and go to 6.  You will need $<=$ and example.length - 1
+    		\item (preferred) while( i $<$ example.length) This will still go to 6, but stop once it hits seven.  It requires no -1 and a $<$ sign.
+    	\end{itemize}
+    	\item Within your loop, use console.log to show each individual position.  How do we do this?
+    	\item i is initially zero.  example[0] is how we show that position.  As i is zero, use example[i].
+    	\item DON'T FORGET TO INCREMENT i!
+    	\item Your code should look like this:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_6_displayNums}
+  		\caption{Code to display the individual elements of a list}
+	\end{figure}
+	\item Save and run the displayList function.  You should get each individual object in the list!
+\end{itemize}
+
+\section*{Part 5: reverseList function}
+How do we display the objects in a list in reverse order?
+\begin{itemize}
+    \item Copy your displayList function, and paste it.  Rename it to reverseList.
+    \item What changes do you need to make to your code?
+    \item Instead of starting at zero, start at the last position in the list.  Using our example, this would be 6.  I know example.length is 7.  How do I make it 6?
+    \item Your condition for your while loop needs to change as well.  Instead of starting at zero and going to 6, we need to start at 6 and go to zero.
+    \item Don't forget to decrement i!
+    \item Your code should look like this:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_6_reverseList}
+  		\caption{Code to display the individual elements of a list in reverse}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 6: sumList function}
+Let's use our main function to call a function called sumList, which will return the sum of the numbers in a list.
+\begin{itemize}
+	\item Go to your main function.  Add the following:  var numList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	\item Create a new function called sumList.  This should receive one argument - list.
+	\item Within this function, you will need the following:
+	\begin{itemize}
+		\item A loop variable, initially set to zero.
+		\item A variable to hold your sum, initially set to zero.
+		\item A loop, starting at zero and traversing the length of the list.
+		\item Inside your loop, do the following:
+		\begin{itemize}
+			\item To your sum, add the individual numbers from the list.
+			\item Increment your loop variable.
+		\end{itemize}
+	\end{itemize}
+	\item Your function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_6_sumList}
+  		\caption{Code to sum the numbers in a list}
+	\end{figure}
+	\item Call this function from your main function, sending the numList variable.  You should get a result of 55.
+	\item Note that this does not work in the spreadsheet - we will learn how to deal with ranges in a future lesson.  For now, just make sure it works in code.
+\end{itemize}
+
+\section*{Part 7: avgList function}
+We already know how many things are in a list (it's the length).  We can use sumList to add the numbers in the list.  How do we find the average?
+\begin{itemize}
+	\item Create a new function called avgList.  You will send this function one argument, a list.
+	\item Within avgList, use the sumList function to add all the numbers in the list.  Return the total of the numbers divided by how many there are (aka the list length).
+\end{itemize}
+
+\section*{Part 8: listMax function}
+How do we find the biggest number in a list?
+\begin{itemize}
+	\item Create a new function called listMax.  Send this function one argument - a list.
+	\item Within your function, you will need the following:
+	\begin{itemize}
+		\item A variable called max, set to the first position (aka 0 position) of the list.  Why do we do this?
+		\item A loop variable, intitially set to one.  Why do we start at one instead of zero?
+		\item A loop that starts at one and ends at the length of the list.
+		\item Within the loop, do the following:
+		\begin{itemize}
+			\item Compare the max variable and the current list value.  
+			\item If the current list value is greater than the max variable, reassign the max variable to be the current list value.
+		\end{itemize}
+		\item Outside of your loop, return the max variable.
+	\end{itemize}
+	\item Use your main function to test this function and make sure it works.
+\end{itemize}
+
+\section*{Part 9: listMin function}
+We have found the max - how do we find the min?
+\begin{itemize}
+	\item  Copy the listMax function and paste it.  Rename the function to listMin.
+	\item Make the changes necessary to find the smallest in the list instead of the biggest.  Some hints:
+	\item Change your variable name from max to min.
+	\item If the current list value is less than the min, reassign min.
+	\item Return the min variable outside of your loop.
+\end{itemize}
+
+\section*{Part 10: inList function}
+This function should take a list and a value.  The function should return true is the value is in the list, and false if it is not.
+\begin{itemize}
+	\item Create a new function called inList.  This function needs two arguments - a list and a value.
+	\item You will need a loop variable that starts at zero.  Your loop should traverse the entire length of the list.
+	\item Within your loop, check to see if the value is the same as the current list position.  If it is, return true.
+	\item If nothing happens within the loop, outside of it, return false.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A displayList, reverseList, sumList, avgList, listMax and listMin functions (14 pts/function, 84 pts total).
+    \item The inList function (16 pts)
+\end{itemize}
+\end{document}

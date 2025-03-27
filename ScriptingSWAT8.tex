@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 8}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/14/2025}
+\newcommand {\ADueDate}{11/19/2025}
+\newcommand {\AAcceptDate}{11/21/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Use the push method to add objects to a list.
+    \item Write a function to see if a word is a palindrome.
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP-190 folder, create a new Google Sheets file. Rename this file to SWAT 8.  Open Apps Script.  Rename the project to SWAT 8.
+\end{itemize}
+
+\section*{Part 2: List Methods}
+We know about list properties, which are characteristics of the list.  Let us now learn about methods.
+\begin{itemize}
+    \item Methods are actions you can do TO a list.  Methods have a similar syntax to properties - usually listname.method()
+    \item For our purposes, we will be using the .push method - this is how we add objects into our list.  These are added to the end of the list.
+    \item Create a main function, with no arguments.
+    \item Within main, create a variable that is a blank list.  var list = []
+    \item On the next line, type the following:  list.push("b")
+    \item On the next line, use console.log to show the list variable.  Run your main function - the output should be this:  ["b"]
+    \item Add a new line after list.push("b").  Push the value "a" into your list.
+    \item Run the main function again.  Your output should be this:  ["b", "a"]
+    \item Push "n" into your list.  Run the main function again.  Your output should be this:  ["b","a","n"]
+    \item Push the remaining "a", "n", and "a" into the list.  Your output at the end should be ["b","a","n","a","n","a"]
+\end{itemize}
+
+\section*{Part 7: reverseList function}
+Let's take a list, and reverse it!
+\begin{itemize}
+    \item The purpose of this function is to take a list, create a new list with the sent lists objects in reverse order, and send back to reserved list.
+    \item For example, if your list is ["b","a","n","a","n","a"], the reserved list would be ["a","n","a","n","a","b"].
+    \item Create a new function called reserveList.  Send this one argument - a list.
+	\item We will need a new list, so we can push our individual objects into it.  To create a new blank list, simply use [ ]
+	\item var newlist = [ ]
+	\item We will need a loop variable, that starts at the end of our sent list.  var i = list.length -1
+	\item We will need a loop that starts at the end of our sent list and ends at the beginning (aka position zero).
+	\item while(i $>=$ 0)
+	\item Within the loop, use newlist.push(list[i]) to take each object from the sent list and push it into the newlist.
+	\item Don't forget to decrement your loop variable!
+	\item Outside the loop, return the newlist.
+	\item Test this using your main function.
+\end{itemize}
+
+\section*{Part 8: Palindrome}
+A palindrome is a word that is the same backwards as it is forwards.  
+\begin{itemize}
+	\item An example palindrome is otto, level, and racecar - the words are spelled the same forwards and backwards.
+	\item This can be done in Sheets, example here:  \url{https://chandoo.org/wp/palindrome-check-excel-formula/}
+	\item Like before, it's not intuitive, easy to understand, and the syntax is awful.  Let's write our own function instead!
+\end{itemize}
+
+\section*{Part 9: isPal function}
+The isPal function should return true if a word is a palindrome, and false if it is not.
+\begin{itemize}
+	\item Our isPal function will need to take a list, get the reverse of that list, then run through and compare each position of the lists together.
+	\item Create a new function called isPal.  Send this function one argument - a list.
+	\item Create a new variable called newlist.  This variable should be assigned to the reverse of the sent list.  Use the reverseList function to do so.
+	\item var newlist = reverseList(list)
+	\item At this point, we have two lists - list is our original list, and newlist is that list, reversed.
+	\item If this is truly a palindrome, each position in list and newlist should be the same.
+	\item It is only when they are not the same (not equals) that we don't have a palindrome.
+	\item What we need to do is loop through each position and compare the list positions together.  As each list is the same length, we need only one loop.
+	\item You'll need a loop variable that starts at zero.
+	\item The loop should start at zero and run the length of the list.
+	\item Within the loop, use if to see if the position of the list and newlist are not equals.  If this is true, return false.
+	\item Outside the loop, return true.  Once we have run through the loop, and false was not returned, that means everything in each list was the same.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A reverseList function (50 pts)
+    \item An isPal function (50 pts)
+\end{itemize}
+\end{document}

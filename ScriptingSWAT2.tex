@@ -1,0 +1,242 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 2}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/24/2025}
+\newcommand {\ADueDate}{03/26/2025}
+\newcommand {\AAcceptDate}{03/31/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Use nested if statements to display outcomes
+    \item Understand else and its correlation to the value\_if\_false argument of the IF function
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item In your COMP 190 folder, create a new Google Sheets file.  Rename this file to SWAT 2.
+    \item In your Scripting SWAT 2 file, create a column with 20 or so names.  Give each name one of three countries (Germany, France or the USA) and an age.
+    \item Click Extensions, then Apps Script.  Rename the project to SWAT 2.
+\end{itemize}
+
+\section*{Part 2: Branching Continued - value\_if\_false and else}
+As we saw in SWAT 1, the if statement is the code implementation of the IF function.  They work in similar ways, and we wrote code similar to some of the SWATS in COMP 110.  We mimicked the IFS function from SWAT 8, where we asked one question, and got one answer.  We only dealt with the results if TRUE.  What about the IF function, which has a value\_if\_false argument?
+\begin{itemize}
+	\item  So far, we have 2 parts of our IF function replicated in code.  We have a logical\_expression, which is a comparison between 2 "things."  We also have our value\_if\_true argument, which is the first line after our if statement.  It looks like the figure below:
+	\begin{figure}[H]
+  \centering
+  \includegraphics{scripting_swat_2_if_true_only}
+  \caption{The if Statement, So Far}
+\end{figure}
+	\item What happens when we need a value\_if\_false?  In code, the is the else keyword.  The else keyword tells the computer what to do if the value is false.  It looks like the following:
+	\begin{figure}[H]
+  \centering
+  \includegraphics{scripting_swat_2_if_with_else}
+  \caption{The if Statement, With else}
+\end{figure}
+	\item We will use else extensively going forward.  Let's practice!
+\end{itemize}
+
+\section*{Part 3: voteStatus}
+We will now apply the else concept to an if statement regarding a person's age and vote status.  
+\begin{itemize}
+	\item Go to your Apps Script, SWAT 2 project.  Write a function called voteStatus, that receives one argument - age.
+    	\item At the beginning of your function, include a comment outlining what the function does.
+	\item Within the voteStatus function, use an if statement to check to see if the person's age is greater than or equal to 18.  
+	\item If this is true, return the text "You can vote"
+	\item if this is false, return the text "You cannot vote."
+	\item Your code should look something like the following:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_votestatus}
+  		\caption{The voteStatus Function}
+	\end{figure}
+	\item Note that this is a little different from what we did in SWAT 1.  Here we use else to tell the computer what to do if the result of the logical\_expression is false.
+	\item Be sure to call voteStatus from the spreadsheet, to make sure it works.
+\end{itemize}
+
+\section*{Part 4:  alcoholStatus}
+The age at which you can legally purchase alcohol varies by country.  Let's use our if function to first see which country a person is from, then determine the alcohol purchasing status of the person.  We will need to do something similar to SWAT 9 in COMP 110 - ask a question, immediately ask another question, then begin showing results.  
+\begin{itemize}
+    \item First, let's find out what the alcohol purchasing ages are for our various countries.
+    \begin{itemize}
+    		\item In the United States, you have to be 21+ to purchase alcohol.
+    		\item In France, you have to be 18+ to purchase alcohol.
+    		\item In Germany, there are many levels, as outlined below:
+    		\begin{itemize}
+    			\item 14 for consumption of beer, wine and cider, if accompanied
+    			\item 16 to purchase wine, cider or beer
+    			\item 18+ to purchase any type of alcohol
+    		\end{itemize}
+    	\end{itemize}
+    	\item What we will need to do is ask two questions:  what country, and what age?  Based on the answers to those questions, we will display the appropriate result.  Let's begin with setting up our function, and looking at the United States.
+    	\item In Apps Script, write a new function called alcoholStatus.  This function should receive two arguments - country and age.  This is easy, it's just like calling a function from a spreadsheet with multiple arguments - the arguments are separated by comma.
+    	\item At the beginning of your function, include a comment outlining what the function does.
+    	\item Within alcoholStatus, write an if statement to see if the country is the same as the text "United States."
+    	\item If this is true, write another if statement to see if the age is greater than or equal to 21.  Your function should look like the following:
+    	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_1}
+  		\caption{The Beginnings of the alcoholStatus Function}
+	\end{figure}
+	\item Let's pause and see what we have done.  We asked one question - is your country United States?  If TRUE, we asked a second questions - is your age greater than or equal to 21?  At this point, we are at TRUE for the first question and TRUE for the second.  We should display the result "You can purchase alcohol."
+	\item To your alcoholStatus function, return the text "You can purchase alcohol."
+	\item Once you press enter to go to a new line, the TRUE argument is finished.  We are at the point now where we know the result of the age question is FALSE.  Now we will use our else keyword and return the text "You cannot purchase alcohol."
+	\item To your alcoholStatus function, go to the next line and type else.  Then, go to the next line and return the text "You cannot purchase alcohol."  Your function should look like this:
+		\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_2}
+  		\caption{The alcoholStatus Function, USA Complete}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 5: else if}
+Now that we have completed the USA, let's check on France.  Similar to the USA, we will need to ask two questions.  Is the country France, and is the age greater than or equal to 21?  Based on the answers to those questions, we will need to return the appropriate text.
+\begin{itemize}
+	\item At this point in your function, we know that the result of the question "Is the country the USA?" is false.  Here, we can use else, immediately followed by an IF statement to check to see if the country is France.
+	\item In your alcoholStatus function, on a new line, type else if, then check to see if the country argument is the same as the text France.
+	\item If this is TRUE, use an if statement to see if the age is greater than or equal to 18.  Your function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_3}
+  		\caption{The alcoholStatus Function, France Start}
+	\end{figure}
+	\item At this point, we are at our TRUE/TRUE option - the country is France, and the age is greater than or equal to 18.
+	\item In your alcoholStatus function, return the text "You can purchase alcohol."
+	\item Just like we did for the USA, use the else keyword to return the TRUE/FALSE option, which is that you cannot purchase alcohol.
+	\item In your alcoholStatus function, use the else keyword to return the text "You cannot purchase alcohol."  Your function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_4}
+  		\caption{The alcoholStatus Function, France Completed}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 6: Blocks Of Code with \{\}}
+So far, when setting up an if or else statement, we do one thing - whatever the next line is.  What happens when we want to do multiple things after an if or an else?  We need to use blocks of code to tell the computer "Do these multiple things."
+\begin{itemize}
+	\item Let's talk about blocks of code.  You'll notice the first line of your function, after the function name and arguments, is a \{.
+	\item This is the start of the block of code.  At the very end of your function, there is a \}.  This indicates the end of the block of code.  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_function_block_of_code}
+  		\caption{An Example Of A Block Of Code}
+	\end{figure}
+	\item You can use blocks of code to do multiple things after an if statement.  Just like our function, use the curly braces to do multiple lines of code after an if statement.  See the example below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_if_block_of_code}
+  		\caption{An Example Of A Block Of Code After An if Statement}
+	\end{figure}
+	\item Note that the program is trying to help you out.  You'll notice the curly braces for the function are one color, and the curly braces for the if statement are a different color.  These are meant to help you determine where your blocks of code start and end.
+	\item Just like an if statement, you can use blocks of code after an else statement as well.  See example below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_else_block_of_code}
+  		\caption{An Example Of A Block Of Code After An else Statement}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 7: Germany}
+Let's use blocks of code to display appropriate text for the ages of people in Germany.
+\begin{itemize}
+	\item Let's review Germany.  There are three options for alcohol - 14 to consume beer, wine and cider, 16 to purchase beer wine and cider, and 18+ to purchase any alcohol.
+	\item In our your alcoholStatus function, we have checked to see if the country if the USA or France, checked the ages of each respective country, and returned the appropriate text.  At this point in the function, we know that the country is NOT the USA, and we also know that the country is NOT France.
+	\item Since the only country left is Germany, we don't even need to check to see if it is Germany.  We can simply use the else keyword.
+	\item Once you have else, type a \{ character.  The \} character should appear automatically, and you can press Enter to get a new line.  This sets up the structure of our block of code, where we can then use if to question the various age groups.  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_5}
+  		\caption{The alcoholStatus Function, Germany Start}
+	\end{figure}
+	\item Now we can use the block of code to find out the age, and return the appropriate text.
+	\item In your alcoholStatus function, write an if statement to see if the age is greater than or equal to 18.  If it is, return the text "You can purchase alcohol."
+	\item Write a second if statement to see if the ages is greater than or equal to 16.  If it is, return the text "You can purchase wine, beer or cider."
+	\item Write a third if statement to see if the age is greater than or equal to 14.  If it is, return the text "You can purchase wine, beer or cider, if accompanied."
+	\item Write an else statement to return the text "You cannot purchase alcohol."  See the figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_alcoholstatus_6}
+  		\caption{The alcoholStatus Function, Germany Complete}
+	\end{figure}
+	\item Note that all of those if's and elses are all in a block of code, happening as a result of an else above.  If you need more blocks of code, simply use more curly braces!
+	\item Be sure to call alcoholStatus from the spreadsheet, to make sure it works.
+\end{itemize}
+
+\section*{Part 8: retireStatus}
+Let's apply the ideas from above to retirement ages. We are still dealing with the USA, France and Germany, only this time, the ages are bigger.
+\begin{itemize}
+	\item In Apps Script, write a new function called retireStatus.  This function will require 2 arguments - country and age.
+    	\item At the beginning of your function, include a comment outlining what the function does.
+	\item Set up the retireStaus function to display the appropriate text, based on the outline below.
+	\begin{itemize}
+		\item In Germany, if your are age 65+, you can retire.
+		\item In France, if you are age 64+, you can retire.
+		\item In the USA, you can retire at the following ages:
+		\begin{itemize}
+			\item If you are age 70+, you can retire with extended benefits.
+			\item If you are age 67+, you can retire with full benefits.
+			\item If you are 65+, you can retire with Medicare benefits.
+			\item If you are 62+, you can retire with reduced benefits.
+		\end{itemize}
+	\end{itemize}
+	\item Once this is working, you call retireStatus from the spreadsheet, to make sure it works.  You should get something like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_2_retireStatus}
+  		\caption{retireStatus, Called From The Spreadsheet}
+	\end{figure}
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A function called voteStatus that shows the status of voters based on age
+    \item A function called alcoholStatus that shows the status of alcohol purchasing, based on country and age
+    \item A function called retireStatus that shows the status of retirement, based on country and age.
+\end{itemize}
+\end{document}

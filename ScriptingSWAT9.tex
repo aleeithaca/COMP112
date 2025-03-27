@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 9}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{11/19/2024}
+\newcommand {\ADueDate}{11/21/2024}
+\newcommand {\AAcceptDate}{12/03/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand set theory, and use loops to code set theory.
+\end{itemize}
+
+
+\section*{Part 1: Create the file}
+\begin{itemize}
+    \item Open the following file:  \url{https://docs.google.com/spreadsheets/d/1rsSMH2md4kkI_y6Yg6K1obSjmyLpwWQXtmDfrRHZyqs/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Place this copy in your COMP-190 folder.
+\end{itemize}
+
+\section*{Part 2: inList Function}
+SWAT 6, Part 10, we wrote an inList function, to see if a value is in a list.  We will need this function for today's lesson.
+\begin{itemize}
+    \item Open Apps Script.  Here, you will find a main function and an inList function.  Run the main function and make sure it works.  
+    \item To review, to see if a value is in a list, use the inList function, sending it a list and a value.
+\end{itemize}
+
+\section*{Part 3: Set Theory: Union}
+Let's look at some more mathematical theories, this time, sets.  Think of sets as lists, which we know how to use.  We will first tackle the union of two sets.
+\begin{itemize}
+    \item Go to the following website:  \url{https://www.probabilitycourse.com/chapter1/1_2_2_set_operations.php}
+    \item The first theory outlined is set union.  This is all elements of both sets, no repeats.  Let's set this up (no pun intended!) with lists in Apps Script.
+    \item For example:  lista = ["a","b","c"] and listb = ["b","c","d"] - the union of these lists is ["a","b","c","d"]
+    \item Create a new function called setUnion.  Send this function two arguments - lista and listb.
+    \item Within this function, create a new variable called newlist.  Set this list to initially be lista.  We do this because in union, it's the elements of both lists, so our newlist should be everything from the first list.
+    \item Next, we will need a loop variable, initially set to zero.
+    \item Set up a loop to loop through the second list.
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Use an if statement to see if the current position of listb is in the newlist.  If it is not, push the current position of listb into the newlist.
+    		\item Increment your loop variable.
+    	\end{itemize} 
+    	\item Outside of the loop, return the newlist.
+    	\item In your main function, set up two lists.  lista should have "a", "b", and "c". listb should have "b","c" and "d".
+    	\item Use console.log to display the results of the setUnion function.  You should get ["a","b","c","d"]  
+\end{itemize}
+
+\section*{Part 4: Set Theory: Intersect}
+Let's look at another set theory, intersect.  
+\begin{itemize}
+    \item Go to the following website:  \url{https://www.probabilitycourse.com/chapter1/1_2_2_set_operations.php}
+    \item Looking at intersect, it is the object that are in both the first and the second list.
+    \item For example:  lista = ["a","b","c"] and listb = ["b","c","d"] - the intersect of these lists is ["b","c"]
+    \item Create a new function called setIntersect.  Send this function two arguments - lista and listb.
+    \item Within this function, you will need a new blank list.  var newlist = [ ]
+    \item You will also need a loop variable, initially set to zero.
+    \item Set up a loop to loop through listb.
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Use an if statement to see if the current position of listb is in lista.  If this is true, push the current position of listb into the newlist.
+    		\item Increment your loop variable.
+    	\end{itemize}
+    	\item Outside of the loop, return the newlist.
+    	\item Use the main function to call and test the setIntersect function.  You should get the following:  ["b","c"]
+\end{itemize}
+
+\section*{Part 5: Set Theory:  Difference}
+Now let's look at the difference between sets
+\begin{itemize}
+	\item Go to the following website:  \url{https://www.probabilitycourse.com/chapter1/1_2_2_set_operations.php}
+    \item The difference between sets is as follows:  set a - set b is all things that are in a and not in b.  set b - set a is all things are in b but not in a.
+    \item For example:  lista = ["a","b","c"] and listb = ["b","c","d"] - lista - listb is ["a"] and listb - lista is ["d"]
+    \item Create a new function called setDifference.  Send this two arguments - lista and listb.
+    \item Within this function, create a new variable that is a new blank list.
+    \item You will also need a loop variable, initially set to zero.
+    \item Set up a loop to loop through lista.
+    \item Within the loop, do the following:
+    \begin{itemize}
+    		\item Use an if statement to see if the current position of lista is in listb.  If this is false, push the current position of lista into the newlist.
+    		\item Increment your loop variable.
+    	\end{itemize}
+    	\item Outside of the loop, return the newlist.
+    	\item Use the main function to call and test the setDifference function, sending lista and listb, in that order.  You should get the following:  ["a"]
+    	\item Run the main function again, only this time, send the setDifference function listb first, then lista.  You should get the following: ["d"]
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A setUnion function (33 pts)
+    \item A setIntersect function (33 pts)
+    \item A setDifference function (34 pts)
+\end{itemize}
+\end{document}

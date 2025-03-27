@@ -1,0 +1,294 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 3}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{03/26/2025}
+\newcommand {\ADueDate}{03/31/2025}
+\newcommand {\AAcceptDate}{04/02/2025}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Spring 2025} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Understand how to call functions from within Apps Script and not from the spreadsheet
+    \item Understand the concept of variables and how to use them inside a function.
+\end{itemize}
+
+
+\section*{Part 1: Create The Spreadsheet, Open Apps Script}
+\begin{itemize}
+    \item In your COMP 190 folder, create a new Google Sheets file.  Rename this file to SWAT 3.
+    \item Once opened and renamed, click Extensions, then Apps Script.  Rename the project to SWAT 3.
+\end{itemize}
+
+\section*{Part 2: HelloWorld, Revisited}
+As we learned in SWAT 1, helloWorld is the first function written by people starting out in computer science.  We will review the initial function we wrote in SWAT 1, and look at how to run it in Apps Script
+\begin{itemize}
+	\item In Apps Script, write a function called helloWorld with no arguments that returns the text "Hello World."  Your function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_return_helloworld}
+  		\caption{helloWorld, Initial Function}
+	\end{figure}
+	\item Once written, call the helloWorld function from the spreadsheet.  You should see the text "Hello World."
+\end{itemize}
+
+\section*{Part 3: helloWorld2 - console.log And Running Functions within Apps Script}
+Let's set up a second helloWorld function, and call it from inside Apps Script.  The results will be output to a console log.  This will allow us to test our functions before calling them from the spreadsheet.
+\begin{itemize}
+	\item in Apps Script, copy and paste the helloWorld function.  Rename this function to helloWorld2.
+	\item Change the return "Hello, World" line to the following:  console.log("Hello World").  See figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_helloworld2}
+  		\caption{helloWorld2 Function}
+	\end{figure}
+	\item Save the project.  To the right of the save button, you will see a drop down menu, and it should say helloWorld.  Click the drop down and choose helloWorld2.  See figure below.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_run_button}
+  		\caption{Select the helloWorld2 Function}
+	\end{figure}
+	\item Once you have selected helloWorld2, click the Run button directly to the left.  Give this a second to run, and you should get the following:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_helloworld2_log}
+  		\caption{helloWorld2, Execution Log Results}
+	\end{figure}
+	\item What happened?  Our first function had to be called from the spreadsheet in order to work.  Here, we run the function from inside Apps Script using the Run button.  console.log tells the function to write the results to the log file, instead of returning the results.  
+	\item Get used to console.log, as we will use this extensively through the rest of this class.
+\end{itemize}
+
+\section*{Part 4: Calling Functions Within Apps Script - The main() Function}
+We now know how to display the results of our functions using console.log.  Let's now expand our knowledge by calling a function within Apps Script and displaying the results in the console.
+\begin{itemize}
+    \item In Apps Script, write a new function called main.  This function will need no arguments.
+    \item Within main, type the following:  console.log(helloWorld()).  Your function should look like this:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_main_1}
+  		\caption{The main Function, Calling helloWorld}
+	\end{figure}
+	\item Save the project.  Click the drop down like you did in part 3, and choose the main function.  Then click Run.
+	\item You should get results just like part 3.  What happened?
+	\begin{itemize}
+		\item When the main function is run, it calls the helloWorld function.
+		\item The helloWorld function returns the text "Hello World" back to the main function.
+		\item The main function then takes the text "Hello World" and displays it in the console log.
+	\end{itemize}
+	\item Think of the main function as a stand in for the spreadsheet.  Instead of calling the function from the spreadsheet (=helloWorld()), we call the helloWorld function from main.  We use console.log to display the results in Apps Script.  In this way, we can use main to call our functions and make sure they work, before we call the functions from the spreadsheet.  This will make the functions easier to troubleshoot and fix.
+\end{itemize}
+
+\section*{Part 5: Variables}
+We will often need a space to put things - numbers, text, the results of functions.  Unlike spreadsheets, which have cells readily available, in Apps Script we need to explicitly set up the spaces ourselves.  Variables are how we do this.  We simply use the var keyword to have the function set up a space for us. We can then use and change these variables within our functions to do things. 
+\begin{itemize}
+	\item In your main function, type the following:  var i = 2
+	\item What did we just do?  We used the var keyword to set up a space.  We named the space i.  We then assigned the value of 2 to the space set up as i.  Note that this is why, when doing comparison, you must use two equals signs (==) - one equals sign (=) is how we assign values to variables.
+	\item Within console.log, replace helloWorld() with i.  You function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_main_2}
+  		\caption{The main Function, With Variable i}
+	\end{figure}
+	\item Save the project.  Run the main function.  You should get a log message with 2.  What happened?
+	\item The main function uses console.log to display the value in the variable i.  Since i is 2, the function displays 2.
+	\item Now replace the var i = 2 with var i = "Hello World"
+	\item Save and run the main function.  You should now see the text "Hello World."  What happened?
+	\item Just like before, main displays what is in i.  i used to be 2 - now it is the text "Hello World"
+	\item Now replace var i = "Hello World" with var i = helloWorld()
+	\item Save and run the main function.  You should still get the text "Hello World."  What happened?
+	\item Just like before, the main function displays what is in i.  i is the result of the helloWorld function.  The helloWorld function returns the text "Hello World," which is what i is, which is what main displays.
+	\item As you can see, a variable can have anything - numbers, text, or the results of functions.  Get used to the idea of variables, as we will use them extensively.
+\end{itemize}
+
+\section*{Part 6: minOfTwo Function}
+Let's apply these ideas to a novel problem that is difficult to solve in spreadsheets - finding the min of two numbers.
+\begin{itemize}
+	\item Imagine we have two numbers - say 7 and 3.  What's the smallest two digit number we can make from those two numbers?  
+	\item The smallest number can can create is 37.  The smaller digit is in the "tens" place, and the bigger number is in the "ones" place.
+	\item Within Apps Script, write a new function called minOfTwo.  This function should receive two arguments - a and b.
+	\item Within this function, write in if statement to see if a is less than b.
+	\item If the result of this is TRUE, a is the smaller number and should show first.  return a, multiplied by ten, with b multiplied by one added.  Something like this:  a * 10 + b * 1
+	\item If the result of this is FALSE, b is the smaller number and should show first.  return b, multiplied by ten, with a multiplied by one added.  Your formula should look like the following:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minoftwo}
+  		\caption{The minOfTwo Function}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 7: Test minOfTwo}
+Let's use our main function to test minOfTwo.  This will ensure it works and can be used from the spreadsheet.
+\begin{itemize}
+	\item Go to your main function.  Delete everything currently in the function, except the curly brace.
+	\item In main, create two new variables, a and b.  Assign the value of 3 to a, and 7 to b.  It should look like this:
+	\begin{itemize}
+		\item var a = 3
+		\item var b = 7
+	\end{itemize}
+	\item Once your variables are set, use console.log to display the results of the minOfTwo function.  Send the a and b variables to minOfTwo when calling the function.  Your main function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_main_3}
+  		\caption{The main Function, Calling minOfTwo}
+	\end{figure}
+	\item Save the project, then run the main function. You should get the result of 37.  It works!
+	\item It works for 37.  Does it work for other numbers?  Test it!  Testing is an important piece of computer science.  Just because it works once doesn't mean it works all the time.  Set up different numbers for a and b, and run main to test them.  It should work - make sure it does.
+	\item Once you are satisfied that the function is working, test the function from the spreadsheet.  Set up two cells with numbers in them, and call the minOfTwo function, using cell references as the arguments.  It should work in the spreadsheet too.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minoftwo_sheet}
+  		\caption{The minOfTwo function, Called From The Spreadsheet}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 8: maxOfTwo Function}
+In the same way we can find the smallest number based on two digits, we can find the max as well.  From our example above, the max of 3 and 7 is 73.  Let's write a function to find the maxOfTwo.
+\begin{itemize}
+	\item In Apps Script, copy and paste the minOfTwo function.  Rename this function to maxOfTwo.
+	\item You need to make once change to this function to show the max of two digits.  What is it?
+	\item If you guessed to change if(a $<$ b) to if(a $>$ b), you're right!  That's all you have to do.  Your function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_maxoftwo}
+  		\caption{The maxOfTwo function}
+	\end{figure}
+	\item Use main to test the function.  As before, use different numbers in a and b to make sure it works.  Once you are confident it works, call minOfTwo from the spreadsheet to make sure it works.
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_maxoftwo_sheet}
+  		\caption{The maxOfTwo function, Called From The Spreadsheet}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 9: minOfThree Function, Start}
+We now know how to find the min and max of two digits.  What about three digits?  For example, the min of digits 3, 7, and 1 is 137.  1 is in the "hundreds" place, 3 is in the "tens" place, and 7 is in the "ones" place.  How do we do this?
+ \begin{itemize}
+	\item When trying to solve a new problem, look back at what we have done previously.  In minOfTwo, we compared the two digits and returned the value accordingly.  Three digits poses a problem, as we now have to juggle three digits.  We will still do comparison of our digits, but then do something a little different.
+	\item In Apps Script, write a new function called minOfThree.  Send this function three arguments - a, b, and c.
+	\item As stated above, we will still do comparison.  This time, we want to set up the function so that a is always the smallest number, b is always the middle number, and c is the biggest number - no matter what numbers are sent initially.  We will need to flip digits, so to speak, kind of like we did in Small Project 2 in COMP 110.
+	\item How do we flip digits?  Let's take it one step at a time.  We want a to be the smallest number.  So, we need to compare a and b, to see which is smaller.
+	\item When comparing a and b, if a is less than b, we need to do nothing.  It is only if b < a that we need to flip digits.
+	\item In your minOfThree function, write an if statement to see if b is less than a. What do we do if this is TRUE?  We will need to do multiple things, so set up your curly braces to do so.
+	\item We will need to flip the digits - as in, what is in b needs to be in a, and what is in a needs to be in b.  
+	\item Seems simple.  Simply say a = b and b = a.  Simple, right?  WRONG!  Why doesn't this work?
+	\item First, let's look at our first reassignment, a = b.  This means that the a variable becomes the value in the b variable.  The current value in a is overwritten.  At this point, a is the same value as b.
+	\item Knowing that a is lost, when we write b = a, and the values in both are the same, the values will remain the same.  So, that solution will not work.
+	\item Instead, we will need a space to place our value on a first.  What's a space to put things?  A variable!
+	\item In your minOfThree function, create a new variable called t.  Assign the value of a to t.  It should look like this:  var t = a
+	\item Now that we have put the value of a into t, we can now assign the value in b to a.  It should look like this:  a = b
+	\item Now we must assign b the value in t.  It should look like this:  b = t
+	\item So, to flip digits, we need a three step process:  
+	\begin{itemize}
+		\item Create a temporary variable (t) and assign the value in a to t.
+		\item Assign the value in b to a.
+		\item Assign the value in b to t.
+	\end{itemize} 
+	\item Your minOfThree function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minofthree_1}
+  		\caption{The minOfThree function Start}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 10: minOfThree Function, Continued}
+Let's continue to flip digits.
+\begin{itemize}
+	\item So far, we have compared a and b, and flipped the digits such that a is the smaller of the two digits.
+	\item Recall that we want a to be the smallest number.  Right now, we know that a is smaller than b.  a also needs to be smaller than c, right?  Let's compare and c, just like we did when comparing a and b.  If c is smaller, flip the digits to ensure that a is the smallest.
+	\item In your minOfThree function, write an if statement to see if c is less than a.  Note that you don't need to use else here.  If this is TRUE, we will need to do multiple things, so set up your curly braces.
+	\item In your curly braces, flip the digits.  Recall the process - create a variable t, assign the value of a to t, assign the value of c to a, and assign t to c.
+	\item Your minOfThree formula should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minofthree_2}
+  		\caption{The minOfThree function, Continued}
+	\end{figure}
+	\item At this point, we know that a is definitely the smallest number.  We need to do one more comparison between b and c, to make sure that c is the biggest number.
+	\item In your minOfThree function, write an if statement to see if c is less than b.  Note that you don't need to use else here.  If this is TRUE, we will need to do multiple things, so set up your curly braces.
+	\item In your curly braces, flip the digits.  Recall the process - create a variable t, assign the value of b to t, assign the value of c to b, and assign t to c.
+	\item Your minOfThree formula should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minofthree_3}
+  		\caption{The minOfThree function, Almost Done}
+	\end{figure}
+	\item At this point, the digits are in order - a is the smallest, b is the middle, and c is the largest.  Recall that we are finding the min of three - the smallest needs to be in the hundreds position, the middle needs to be in the tens position, and the largest in the ones position.
+	\item return the digits in the correct order.  You will need to take a, multiplied by 100, add b multiplied by 10, and c multiplied by 1.
+	\item Your final function should look like this:
+	\begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_minofthree_4}
+  		\caption{The minOfThree function, Completed}
+	\end{figure}
+	\item Just like before, test it, assign different numbers to your variables, and when you are confident it works, call the function from the spreadsheet.
+\end{itemize}
+
+\section*{Part 11: maxOfThree Function}
+We now know how to find the min of three digits.  What about the max?  For example, the max of digits 3, 7, and 1 is 731.  How do we do this?
+ \begin{itemize}
+	\item In your Apps Script, copy and paste your minOfThree function.  Rename this function to maxOfThree.
+	\item You will need to make two slight changes to this function.  What are those changes?  In our examples, the min of 3, 1, and 7 is 137, and the max is 731.  What's the difference between the two?  The 7 and 1 are flipped - the 3 is the same. You can do this in your return, at the very end of your function.
+	\item In your maxOfThree function, the return line, switch a and c so that c is multiplied by 100, b multiplied by 10 is added, and a multiplied by 1 is added at the end.  Your maxOfThree function should look like this:
+	 \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_3_maxofthree}
+  		\caption{The maxOfThree function}
+	\end{figure}
+	\item As usual, use main to test this function.  Try it with different numbers.  When you are confident it works, call it from the spreadsheet.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A main function used to call our various other functions
+    \item A helloWorld function that returns the text "Hello World"
+    \item A helloWorld2 function that displays the text "Hello World" within the console log
+    \item A minOfTwo function that finds the smallest number, based on 2 individual digits
+    \item A maxOfTwo function that finds the biggest number, based on 2 individual digits
+    \item A minOfThree function that finds the smallest number, based on 3 individual digits
+    \item A maxOfThree function that finds the biggest number, based on 2 individual digits
+\end{itemize}
+\end{document}

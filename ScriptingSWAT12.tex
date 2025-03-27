@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 12}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/05/2024}
+\newcommand {\ADueDate}{12/10/2024}
+\newcommand {\AAcceptDate}{12/12/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Be able to work with ranges in Apps Script
+\end{itemize}
+
+
+\section*{Part 1: Copy the file}
+\begin{itemize}
+    \item Open the following file:  \url{https://docs.google.com/spreadsheets/d/1jwJjscKkF-kRx2TEPHd2mMwb2u6BJtXzeZZ9jaWh5EQ/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Put this copy into your COMP 190 folder.
+    \item Once copied, open the file and Apps Script.
+\end{itemize}
+
+\section*{Part 2: Sheets Review:  Ranges, the SUM function}
+Let's first review the sum function and the concept of ranges from the spreadsheet.
+\begin{itemize}
+    \item In your Sheets file, in the range A1:D12, put in random numbers between 1 and 9.  Something like this:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_12_sheet_range}
+  		\caption{A range of numbers}
+	\end{figure}
+	\item This range of numbers has 4 columns and 6 rows.  You can reference each cell in the range using a combination of column first, then row.
+	\item Think of each row in this range:  A1:D1, A2:D2, A3:D3, A4:D4, A5:D5, A6:D6.
+	\item To the right of your range, in cell F1, use the SUM function to add up the numbers in the range.  It should look like this: =SUM(A1:D6).  Based on the example above, your sum should be 115.
+	\item Let's think about what the SUM function is doing.  You are taking a range (many rows and many columns) and adding all the numbers within.
+	\item We've been able to do this in Apps Script with lists, back in SWAT 6.  If you think of a list as a row, we know how to add 1 row, many columns.
+	\item How do we now add many rows?  How does Apps Script "see" ranges?
+\end{itemize}
+
+\section*{Part 3: Ranges, Apps Script}
+Let's look at ranges in Apps Script, and see how they are structured.
+\begin{itemize}
+    \item Using our main function, recreate each row of the spreadsheet example above.
+    \begin{itemize}
+    		\item A1:D1 can be written like this:  var r0 = [1, 2, 3, 4]
+    		\item A2:D2 can be written like this:  var r1 = [4, 8, 9, 6]
+    		\item A3:D3 can be written like this:  var r2 = [1, 4, 2, 3]
+    		\item A4:D4 can be written like this:  var r3 = [7, 3, 7, 7]
+    		\item A5:D5 can be written like this:  var r4 = [6, 6, 5, 1]
+    		\item A6:D6 can be written like this:  var r5 = [7, 8, 9, 2]
+    \end{itemize}
+    \item Note that the spreadsheet starts position at one, but the script starts position at zero.  The sheet runs one through six, the script runs zero through five. 
+    \item In main, create a variable called range, and make it a list.  Each item in our range list should be a row from above.  It should look like this:  var range = [r0, r1, r2, r3, r4, r5]
+    \item In main, use console.log to show the range variable.  Save and run your main function.  You should get the following:
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_12_script_range}
+  		\caption{A list of lists of numbers}
+	\end{figure}
+	\item This is the exact same thing as your ranges from part 2.  In Apps Script, a range is a list, of lists!  
+\end{itemize}
+
+\section*{Part 4: List of Lists, Properties and Navigation}
+Let's look at some of the properties of a list of lists, compare them to the spreadsheet, and learn how to use loops to recreate references.
+\begin{itemize}
+    \item In your main function, use console.log to show the length of the range.  It should look like this:  console.log(range.length)
+    \item Save and run your main function.  You should get a result of six.  Remember that the length is how many things are in the list.  In our list of lists, there are six things - each thing is a list.  This is just like rows in a spreadsheet.  range.length is the number of lists in a list, and is the same as the number of rows in a spreadsheet.
+    \item If range.length is the number of rows, how do we find the number of columns?  That is easy - find the length of one row.  How to we address rows?  It is simple - use range[position] to show which row you wish to see.
+    \item Change console.log to range[0].  Save and run your main function.  You should now get [1, 2, 3, 4]
+    \item How do you find the length of that?  Simply add .length at the end.  It should look like this:  range[0].length 
+    \item Save and run your main function.  You should get a result of 4.  This is your number of columns.  
+    \item That's how to get the number of rows and columns.  How do we address each individual value in our range?  
+    \item This is done with two coordinates after our list name.  For example, we used range[0] above to address the entire row.  To address a position within that row, we need a second [position] after our list name.
+    \item For example, let's say we want to see that number 1 from our first row of [1, 2, 3, 4].  This is the 0 row, and we want the zero position within that row (aka the zero column).  Use range[0][0] to get that specific number.
+    \item Modify your console.log to show range[0][0].  Save and run main - you should get 1.
+    \item What is the result of range[0][1]?  If you said 2, you are correct! 
+    \item What is the result of range[1][1]?  If you said 8, you are correct!
+    \item In the range, there is a second 8.  What are the coordinates for it?  If you said range[5][1], you are correct!
+    \item There is one five in the range.  What are the coordinates for it?  If you said range[4][2], you are correct!
+    \item As you can see from the examples above, the coordinates are backwards from references in a sheet.  In a sheet, it's column first, then row.  In Apps Script, it's row first, then column. 
+\end{itemize}
+
+\section*{Part 5: displayRange function}
+Let's set up a function that uses two loops to display a range.  
+\begin{itemize}
+    \item Create a new function called displayRange.  Send this function one argument - range.
+    \item When called, the function should display the following (Note:  The entire output is not shown for space purposes):
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_12_display_range}
+  		\caption{A list of lists of numbers}
+	\end{figure}
+	\item This prints each row, then each object within each row. 
+    \item To accomplish this, we need two loops.  One needs to start at zero and run the number of rows (range.length).  Within, we will need a second loop that starts at zero and runs the number of columns (range[0].length).
+    \item Within your displayRange function, create a loop variable, initially set to zero.
+    	\item You will then need a loop that starts at zero, and traverses the number of rows in the range.  Use range.length to find the number of rows. Within the loop, do the following:
+    	\begin{itemize}
+    		\item Use console.log to display the entire row.  It should look something like this:  console.log(range[i])  
+    		\item Increment your loop variable!
+    	\end{itemize}
+    	\item Save this function.  Return to your main function and call the displayRange function, sending the range created in part 3.  You should get each row individually printed out.
+    	\item Return to your displayRange function.  You will now need a second loop.  
+    	\item After the console.log(range[i]) line, create a second loop variable, initially set to zero.  
+    	\item You will need a loop that starts at zero and runs for the number of columns.  Use range[0].length for the number of columns.  Within this loop, do the following:
+    	\begin{itemize}
+    		\item Use console.log to display each object in the range.  You will need to address each object by row first, then column.  It should look something like this:  console.log(range[i][j])  
+    		\item Increment your loop variable!
+    	\end{itemize}
+    	\item Save this function, and run your main function once again.  You should now see each object in the range, listed individually.
+    	\item You now know the basic setup for working with ranges.  Let's use this to add up the numbers in a range! 
+\end{itemize}
+
+\section*{Part 6: sumRange function}
+Let's write our own version of the SUM function.
+\begin{itemize}
+    \item Copy the displayRange function from part 5.  Paste it, and rename the function to sumRange.  You will need the same argument - range.
+    \item As this is adding up numbers, we will need a sum variable, initially set to zero.
+    \item As we have the basic structure, we now need to make a few small modifications in order to sum the numbers.  Make the following changes:
+    \begin{itemize}
+    		\item Remove the console.log(range[i]) line.
+    		\item Replace the console.log(range[i][j] line with your summation instead.  You will need to add the number at each position in the range, starting with row first, then column.  It should look like this:  sum = sum + range[i][j]
+    		\item Outside of the loops, return the sum.
+    	\end{itemize}
+    	\item Save this, and call this function from your main function.  Use console.log(sumRange(range)) to do so.  If you're using the example from above, you should get 115.
+    	\item Once it works in Apps Script, test this function from the sheet.  You should get the same answer as the SUM function!
+\end{itemize}
+
+\section*{Part 7: sumRange2 function}
+We know how to add numbers in a range, using two loops.  How can we do the same thing, only using two functions with one loop each?
+\begin{itemize}
+    \item Create a sumRange2 function.  Send this function one argument - range.
+    \item Harken back to SWAT 6, when we first started working on lists.  We wrote a function called sumList, that adds up all the numbers in a list.  This function is included in the start file.
+    \item In your sunRange2 function, do the following:
+    \begin{itemize}
+    		\item Set up a sum variable, initially set to zero.
+    		\item Set up a loop variable, initially set to zero.
+    		\item You'll need a loop that runs the number of rows in the range.  Within the loop, do the following:
+    		\begin{itemize}
+    			\item Sum the numbers in each row of the range by calling the sumList function.  You'll need to send each individual row of the range as the argument for sumList.
+    			\item Increment your loop variable!
+    		\end{itemize}
+    		\item Outside your loop, return the sum.
+    	\end{itemize}
+    	\item Save and test this function from main.  Once it works in Apps Script, test it using the sheet.
+\end{itemize}
+
+\section*{Part 8: rangeToRow function}
+There are times when you will need to turn a range into a list.  Let's write a function to do so!
+\begin{itemize}
+	\item  Copy your displayRange function, and rename it to rangeToRow.  You will send this function one argument - range.
+	\item Modify your rangeToRow function as follows:
+	\begin{itemize}
+		\item Remove the console.log lines.
+		\item You will need a new blank list.
+		\item Loop through the range, pushing each object into the newlist.
+		\item Return your new list at the end of the function.  When doing so, return the newlist as a list of lists, like this:  return [newlist]
+	\end{itemize}
+	\item This function should work both in Apps Script and when called from the sheet.
+\end{itemize}
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item A displayRange function (25 pts)
+    \item A sumRange function (25 pts)
+    \item A sumRange2 function (25 pts)
+    \item A rangeToRow function (25 pts)
+\end{itemize}
+\end{document}

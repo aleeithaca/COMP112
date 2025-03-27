@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\newcommand{\AName}{Scripting SWAT 11}
+\newcommand{\ALength}{50 - 90 minutes}
+\newcommand{\ADate}{12/03/2024}
+\newcommand {\ADueDate}{12/05/2024}
+\newcommand {\AAcceptDate}{12/10/2024}
+\newcommand{\AValue}{100}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\begin{tabular}{l}
+	{\AName} \\
+	{\ALength} \\
+	\end {tabular}}
+	
+\fancyhead[C]{\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Date Posted:} & \textbf{Date Due:} & \textbf{Accepted Until:} \\
+  \hline
+  \ADate & \ADueDate & \AAcceptDate \\
+  \hline
+  \end {tabular}}
+  
+\fancyhead[R]{\begin{tabular}{r}
+	{COMP 110} \\
+	{Fall 2024} \\
+	\end {tabular}}
+
+\begin{document}
+\textbf{Welcome to \AName!  By the end of this lesson, Students Will be Able To...}
+\begin{itemize}
+    \item Use loops to sort a list into order
+    \item Use generative AI to look at bubble sort
+\end{itemize}
+
+
+\section*{Part 1: Copy the file}
+\begin{itemize}
+    \item Open the SWAT 11 Start file, found here:  \url{https://docs.google.com/spreadsheets/d/1h82RoYwZy9ESEBZCmIZZ7lWXuTtLYJGa9IRf8QlV7os/edit?usp=sharing}
+    \item Once opened, click File, then Make a Copy.  Place a copy of this file into your COMP-190 folder.
+    \item Once opened, open Apps Script.
+\end{itemize}
+
+\section*{Part 2: SORT function}
+Let's review the SORT function in Google Sheets, to understand how the function works and what we need to replicate using our lists.
+\begin{itemize}
+    \item Go to the spreadsheet portion of your SWAT 11 file.  In the A column, label cell A1 as "Numbers."  Below, type ten numbers - doesn't matter what the numbers are.
+    \item Label cell B1 as "SORT(Ascending)"  In cell B2, write a formula that uses the SORT function to sort the numbers in the A column, starting at A2.  =SORT(A2:A)
+    \item You should now see the numbers sorted in ascending order - that is, from lowest to highest.
+    \item Label cell C1 as "SORT(Descending)"  In cell C2, write a formula that uses the SORT function to sort the numbers in the A column, starting in A2, in descending order.  You'll need 2 extra arguments to do so.  =SORT(A2:A, 1, false)
+    \item You should now see the numbers in descending order - from highest to lowest.
+    \begin{figure}[H]
+  		\centering
+  		\includegraphics{swat_11_sort_sheet}
+  		\caption{Numbers in a Sheet, Sorted 2 Ways}
+	\end{figure}
+\end{itemize}
+
+\section*{Part 3: Existing Code Review}
+We will use a couple of pieces of code we have already used in previous assignments, in this assignment, to accomplish our goals.
+\begin{itemize}
+    \item In Apps Script, you will see three functions already set up.  They are as follows:
+    \begin{itemize}
+    		\item main, where we will set up some variables and call other functions
+    		\item reverseList, which takes a list and returns that list, in reverse order
+    		\item minOfFour, which we have written, used and modified to work with a list
+    	\end{itemize}
+    	\item Keep these pieces of code in mind as we proceed, as you will need them at various points.
+\end{itemize}
+
+\section*{Part 4: minOfFour, Pattern Recognition}
+Speaking of minOfFour, let's take a deeper dive and see if we can recognize some patterns.
+\begin{itemize}
+    \item Go to your minOfFour function.  Here, you will find a bunch of if statements.  These if statements are used to put your numbers in order.
+    \item In looking at the if statements, notice the pattern of positions that are being compared.  They are as follows:
+    \begin{itemize}
+    		\item position 0 and 1, 0 and 2, 0 and 3
+    		\item position 1 and 2, 1 and 3
+    		\item position 2 and 3
+    	\end{itemize}
+    	\item This should look suspiciously familiar, as it was homework 10.  We have two loops here.  The outer loop starts at zero, and runs until 2.
+    	\item The inner loop starts at 1, then runs to 3.  It resets, starts at 2 and runs until 3, then resets and runs only once, at 3.
+    	\item Let's use this pattern to write a sorting function that will sort our list in ascending order (as in, smallest to largest).
+\end{itemize}
+
+\section*{Part 5: sortList function}
+Let's write a function to sort the list
+\begin{itemize}
+    \item Create a new function called sortList.  Send this function one argument - list.
+    \item Within the function, create a new loop variable, initially set to zero.
+    \item Set up a while loop that runs while your loop variable is less than list.length - 1.  This will force the loop to stop running at the second to last position in the list.
+    \item Within the loop, use console.log to display the current list position.  Also, increment your loop variable.
+    \item Save this function.  Use your main function to call the sortList function, sending the already created list.  The function should display each individual list position, except for the last one.
+    \item Now that this works, we need our second loop.  Go back to the sortList function.
+    \item Find the line of code that uses console.log to display the current list value.  Remove it.  IN it's place, we will need a new loop variable, and another loop.
+    \item Create a second loop variable.  Initially, this variable should be your first loop variable + 1 ( as in, if your first loop variable is called i, var j = i + 1).
+    \item Set up your second loop, to run while it is less than list.length.  Note that this loop should run to the end of the list.
+    \item Within your loop, do the following:
+    \begin{itemize}
+    		\item Use an if statement to see if the list position at your second loop variable is less than the list position of your first loop variable.
+    		\item If it is, you will need to do the following three things (Note - These three things are already set up in your minOfFour function):
+    		\begin{itemize}
+    			\item Set up a temporary variable, and store the list position of your second loop variable.
+    			\item Set your list position of your second loop variable to be the list position of your first loop variable.
+    			\item Set your list position of your first loop variable to be the temporary variable.
+    		\end{itemize}
+    		\item Before the loop ends, be sure to increment your second loop variable.
+    	\end{itemize}
+    	\item Outside of the loop, return your list. It should now be in ascending order!
+    	\item Use your main function to call and test this function.  Congrats, you have written your first sorting algorithm!
+\end{itemize}
+
+\section*{Part 6: Modify sortList function}
+Now let's modify our sortList function to deal with ascending and descending order.
+\begin{itemize}
+	\item In Part 2, we saw the SORT function work for both ascending order and descending order.  We have our sortList function working for ascending order - let's make it work with descending order!
+	\item Modify the arguments in your sortList function to include a second argument - order.
+	\item order is a piece of text with the following two options:  "asc" for ascending order and "desc" for descending order.  Anything not those two options should show an error message.
+	\item You will need to modify your return portion of your function.  if order == "asc", what should be returned?  What about if order is "desc"  - what function can be used to reverse the order of the list?  What else (pun intended!) is needed?
+\end{itemize}
+
+\section*{Part 7: Different ways to sort}
+The sorting function we just wrote is a certain type of sort called insertion sort.  There are other types of sorting. Let's use generative AI to get some of the details, and test these functions ourselves.
+\begin{itemize}
+	\item When I say generative AI, the first thing that comes to mind if ChatGPT. Yes, we are going to use ChatGPT to do work!
+	\item Go to \url{https://chatgpt.com/}.  If you do not yet have an account, you may wish to create one, as these tools are not going away!
+	\item ChatGPT will want to know what you wish to do.  Here's some goo ways to address the use of ChatGPT:
+	\begin{itemize}
+		\item Be specific with language.  We are using Google Apps Script.  If you ask ChatGPT for a bubble sort function, it will give you python by default.  You'll want to say "Show me a bubble Sort function in Google Apps Script".
+		\item Be Specific with Loops.  While loops are not the only loops.  There's do/while loops, for loops, forEach loops, each having their own syntax and use.  When asking for a bubble sort function, make sure to tell ChatGPT to use while loops.
+		\item No Comments!  I know I haven't been harping on comments too much, but chaptgpt will include them by default.  The point of an exercise like this is to see if you understand what the code is saying/doing - comments make that a bit too easy.  
+		\item NEVER COPY FROM CHATGPT!  Instead of using the copy code button in ChatGPT, type out the code yourself.  This reinforces the process of coding, and helps in understanding.
+		\item Add comments - Once you have the code written out, add comments to it.  What is each variable needed for, when the loop starts and stops, what happens in the loop and what is returned are all things that should be commented on.  This will also help in understanding how the code is structured and what the program is doing.
+	\end{itemize}
+	\item Prompt ChatGPT for a bubble sort function, no comments, in Google Apps Script, using a while loops.
+	\item Once you have code, copy it into your SWAT 11 Apps Script.  Add comments describing what the code is doing.
+\end{itemize}
+
+
+\section*{Submission}
+When submitting the assignment, ensure that the settings are changed so that anyone with the link can view.
+\begin{figure}[H]
+  \centering
+  \includegraphics{submission.png}
+  \caption{Submission Settings}
+\end{figure}
+
+\section*{How this is graded}
+This assignment is worth \AValue \ points. You will achieve all \AValue \   points if the following things are completed:
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{document}
